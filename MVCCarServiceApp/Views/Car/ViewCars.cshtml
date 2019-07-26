@@ -1,0 +1,77 @@
+﻿@model MVCCarServiceApp.ViewModels.CarAndCustomerViewModel
+@{
+    ViewBag.Title = "CustomerDetails";
+}
+
+<h2>@Model.Customer.FirstName @Model.Customer.LastName Details</h2>
+
+<hr />
+
+<table class="table table-responsive table-hover table-bordered table-striped">
+    <tr>
+        <td>ID</td>
+        <td>@Model.Customer.Id</td>
+    </tr>
+    <tr>
+        <td>First Name</td>
+        <td>@Model.Customer.FirstName</td>
+    </tr>
+    <tr>
+        <td>Last Name</td>
+        <td>@Model.Customer.LastName</td>
+    </tr>
+    <tr>
+        <td>Email ID</td>
+        <td>@Model.Customer.EmailId</td>
+    </tr>
+    <tr>
+        <td>Mobile No.</td>
+        <td>@Model.Customer.MobileNo</td>
+    </tr>
+    <tr>
+        <td>City</td>
+        <td>@Model.Customer.City</td>
+    </tr>
+</table>
+
+@Html.ActionLink("Add New Car", "CarForm", "Car", Model.Customer, new { @class = "btn btn-default" })
+
+<hr />
+<h2>Car Record for @Model.Customer.FirstName @Model.Customer.LastName</h2>
+<hr />
+
+@if (!Model.Cars.Any())
+{<h4>No Cars Added</h4> }
+
+else
+{
+    <div class="jumbotron" style="margin-top: 5px; margin-bottom:15px">
+        <table class="table table-responsive table-hover table-striped">
+            <tr>
+                <th>VIN</th>
+                <th>Make</th>
+                <th>Model</th>
+                <th>Style</th>
+                <th>Color</th>
+                <th></th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model.Cars)
+            {
+                <tr>
+                    <td>@item.VIN</td>
+                    <td>@item.Make</td>
+                    <td>@item.Model</td>
+                    <td>@item.Style</td>
+                    <td>@item.Color</td>
+                    <td>@Html.ActionLink("Add New Service", "ServiceForm", "Service", item, new { @class = "btn btn-success" })</td>
+                    <td>
+                        @Html.ActionLink("Edit", "CarEditForm", item, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Delete", "DeleteCar", item, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+}
+

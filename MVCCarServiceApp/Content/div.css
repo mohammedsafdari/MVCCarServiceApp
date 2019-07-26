@@ -1,0 +1,28 @@
+﻿#div1 {
+    display: inline-block;
+    float: left
+}
+
+#div2 {
+    display: inline-block;
+    float: right;
+    padding-bottom: 15px;
+}
+
+#div3 {
+    clear: both;
+}
+
+.tdCheckbox {
+    padding-left: 5px;
+}
+
+input#search {
+    border-radius: 7px;
+    border-style: inset;
+}
+
+table#tableRadio {
+    font-size: 13px;
+    margin-left: -4px;
+}

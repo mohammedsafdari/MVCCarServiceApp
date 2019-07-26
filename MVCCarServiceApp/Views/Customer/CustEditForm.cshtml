@@ -1,0 +1,53 @@
+﻿@model MVCCarServiceApp.Models.Customer
+@{
+    ViewBag.Title = "CustomerForm";
+}
+
+<h2>Edit Customer</h2>
+
+@using (Html.BeginForm("EditCustomer", "Customer"))
+{
+    <table class="form-group">
+        <tr>
+            <td class="text-center"><strong>First Name</strong></td>
+            <td>
+                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })<br />
+                @*@Html.ValidationMessageFor(m => m.FirstName)*@
+            </td>
+        </tr>
+        <tr>
+            <td class="text-center"><strong>Last Name</strong></td>
+            <td>
+                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })<br />
+                @*@Html.ValidationMessageFor(m => m.LastName)*@
+            </td>
+        </tr>
+        <tr>
+            <td class="text-center"><strong>Email Id</strong></td>
+            <td>
+                @Html.TextBoxFor(m => m.EmailId, new { @class = "form-control" })<br />
+                @*@Html.ValidationMessageFor(m => m.EmailId)*@
+            </td>
+        </tr>
+        <tr>
+            <td class="text-center"><strong>Mobile No.</strong></td>
+            <td>
+                @Html.TextBoxFor(m => m.MobileNo, new { @class = "form-control" })<br />
+                @*@Html.ValidationMessageFor(m => m.MobileNo)*@
+            </td>
+        </tr>
+        <tr>
+            <td class="text-center"><strong>City</strong></td>
+            <td>
+                @Html.TextBoxFor(m => m.City, new { @class = "form-control" })<br />
+                @*@Html.ValidationMessageFor(m => m.City)*@
+            </td>
+        </tr>
+
+
+    </table>
+    @Html.HiddenFor(m=>m.Id)
+    <button class="btn btn-primary" type="submit">Update</button>
+    <hr/>
+    @Html.ValidationSummary("",new { @class = "text-danger" })
+}

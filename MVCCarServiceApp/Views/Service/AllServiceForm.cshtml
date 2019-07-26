@@ -1,0 +1,99 @@
+﻿@model MVCCarServiceApp.ViewModels.CarAndServicesViewModel
+@{
+    ViewBag.Title = "Service Form";
+}
+
+<h2>Car Record for Customer</h2>
+
+<hr />
+
+<table class="table table-responsive table-hover table-bordered table-striped">
+    <tr>
+        <td><strong>Make</strong></td>
+        <td>@Model.Car.Make</td>
+        <td><strong>Style</strong></td>
+        <td>@Model.Car.Style</td>
+    </tr>
+    <tr>
+        <td><strong>Model</strong></td>
+        <td>@Model.Car.Model</td>
+        <td><strong>Color</strong></td>
+        <td>@Model.Car.Color</td>
+    </tr>
+</table>
+
+
+<hr />
+<h2>Add Service</h2>
+
+@using (Html.BeginForm("AddService", "Service"))
+{
+    <table class="table form-group">
+        <tr>
+            <td class="text-center"><strong>Miles</strong></td>
+            <td>
+                @Html.TextBoxFor(m => m.CarService.Miles, new { @class = "form-control" })<br />
+                @*@Html.ValidationMessageFor(m => m.VIN)*@
+            </td>
+            <td class="text-center"><strong>Details</strong></td>
+            <td>
+                @Html.TextBoxFor(m => m.CarService.Details, new { @class = "form-control" })<br />
+                @*@Html.ValidationMessageFor(m => m.Make)*@
+            </td>
+        </tr>
+        <tr>
+            <td class="text-center"><strong>Price</strong></td>
+            <td>
+                @Html.TextBoxFor(m => m.CarService.Price, new { @class = "form-control" })<br />
+                @*@Html.ValidationMessageFor(m => m.Model)*@
+            </td>
+            <td class="text-center"><strong>Service Type</strong></td>
+            <td>
+                @Html.DropDownListFor(m => m.CarService.ServiceTypeId,
+                new SelectList(Model.ServiceTypes, "Id", "ServiceName"),
+                "Select Car Style", new { @class = "form-control" })<br />
+                @*@Html.ValidationMessageFor(m => m.Style)*@
+            </td>
+        </tr>
+    </table>
+    @Html.HiddenFor(c => c.Car.Id)
+    <button class="btn btn-primary" type="submit">Add Service</button>
+}
+
+<hr />
+<h2>Past Service Records</h2>
+<hr />
+
+@if (!Model.CarServices.Any())
+{<h4>No Past Services</h4> }
+
+else
+{
+    <div class="jumbotron" style="margin-top: 5px; margin-bottom:15px">
+        <table class="table table-responsive table-hover table-striped">
+            <tr>
+                <th>Miles</th>
+                <th>Price</th>
+                <th>Details</th>
+                <th>Date Added</th>
+                <th>Service Type</th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model.CarServices)
+            {
+                <tr>
+                    <td>@item.Miles</td>
+                    <td>@item.Price</td>
+                    <td>@item.Details</td>
+                    <td>@item.DateAdded</td>
+                    <td>@item.ServiceType.ServiceName</td>
+                    <td>
+                        @Html.ActionLink("Delete", "DeleteService", item, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
+            <tr>@Html.ActionLink("Show Less", "ServiceForm", Model.Car)</tr>
+        </table>
+    </div>
+}
+

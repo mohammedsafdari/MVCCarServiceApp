@@ -1,0 +1,50 @@
+﻿@model MVCCarServiceApp.Models.Car
+@{
+    ViewBag.Title = "CarEditForm";
+}
+
+<h2>Car Form</h2>
+
+@using (Html.BeginForm("EditCar", "Car"))
+{
+    <table class="form-group">
+        <tr>
+            <td class="text-center"><strong>VIN</strong></td>
+            <td>
+                @Html.TextBoxFor(m=>m.VIN, new { @class = "form-control" })<br />
+                @*@Html.ValidationMessageFor(m => m.VIN)*@
+            </td>
+        </tr>
+        <tr>
+            <td class="text-center"><strong>Make</strong></td>
+            <td>
+                @Html.EnumDropDownListFor(m => m.Make, new { @class = "form-control" })<br />
+                @*@Html.ValidationMessageFor(m => m.Make)*@
+            </td>
+        </tr>
+        <tr>
+            <td class="text-center"><strong>Model</strong></td>
+            <td>
+                @Html.TextBoxFor(m => m.Model, new { @class = "form-control" })<br />
+                @*@Html.ValidationMessageFor(m => m.Model)*@
+            </td>
+        </tr>
+        <tr>
+            <td class="text-center"><strong>Style</strong></td>
+            <td>
+                @Html.EnumDropDownListFor(m => m.Style, "Select Car Style", new { @class = "form-control" })<br />
+                @*@Html.ValidationMessageFor(m => m.Style)*@
+            </td>
+        </tr>
+        <tr>
+            <td class="text-center"><strong>Color</strong></td>
+            <td>
+                @Html.TextBoxFor(m => m.Color, new { @class = "form-control" })<br />
+                @*@Html.ValidationMessageFor(m => m.Color)*@
+            </td>
+        </tr>
+    </table>
+    @Html.HiddenFor(c => c.Id)
+    @Html.HiddenFor(c=>c.CustomerId)
+    <button class="btn btn-primary" type="submit">Edit</button>
+}
