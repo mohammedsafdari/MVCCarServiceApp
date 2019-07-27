@@ -22,12 +22,12 @@ namespace MVCCarServiceApp.Controllers
         {
             var services = _context.CarServices.Where(c => c.CarId == car.Id).OrderByDescending(c => c.DateAdded).ToList();
             var serviceList = new List<CarService>();
-            int i=0;
+            int i = 0;
 
             foreach (var item in services)
             {
                 i++;
-                if(i<=5)
+                if (i <= 5)
                 {
                     serviceList.Add(item);
                 }
@@ -60,15 +60,39 @@ namespace MVCCarServiceApp.Controllers
 
         public ActionResult AddService(CarAndServicesViewModel viewModel)
         {
-            viewModel.CarService.DateAdded = DateTime.Today;
-            viewModel.CarService.CarId = viewModel.Car.Id;
+            if (ModelState.IsValid)
+            {
+                viewModel.CarService.DateAdded = DateTime.Today;
+                viewModel.CarService.CarId = viewModel.Car.Id;
 
-            var car = _context.Cars.Find(viewModel.Car.Id);
+                var car = _context.Cars.Find(viewModel.Car.Id);
 
-            _context.CarServices.Add(viewModel.CarService);
-            _context.SaveChanges();
-            
-            return RedirectToAction("ServiceForm", car);
+                _context.CarServices.Add(viewModel.CarService);
+                _context.SaveChanges();
+
+                return RedirectToAction("ServiceForm", car);
+            }
+            else
+            {
+                var services = _context.CarServices.Where(c => c.CarId == viewModel.Car.Id).OrderByDescending(c => c.DateAdded).ToList();
+                var serviceList = new List<CarService>();
+                int i = 0;
+
+                foreach (var item in services)
+                {
+                    i++;
+                    if (i <= 5)
+                    {
+                        serviceList.Add(item);
+                    }
+                }
+
+                viewModel.CheckInteger = i;
+                viewModel.Car = _context.Cars.Find(viewModel.Car.Id);
+                viewModel.CarServices = serviceList;
+                viewModel.ServiceTypes = _context.ServiceTypes.ToList();
+                return View("ServiceForm", viewModel);
+            }
         }
 
         public ActionResult DeleteService(CarService service)

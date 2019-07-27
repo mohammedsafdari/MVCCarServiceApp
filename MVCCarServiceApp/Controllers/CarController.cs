@@ -39,13 +39,26 @@ namespace MVCCarServiceApp.Controllers
 
         public ActionResult AddCar(OneCarAndCustomerViewModel viewModel)
         {
-            viewModel.Car.CustomerId = viewModel.Customer.Id;
             var customer = _context.Customers.Find(viewModel.Customer.Id);
-            var car = viewModel.Car;
-            _context.Cars.Add(car);
-            _context.SaveChanges();
 
-            return RedirectToAction("ViewCars", customer);
+            if (ModelState.IsValid)
+            {
+                viewModel.Car.CustomerId = viewModel.Customer.Id;
+                var car = viewModel.Car;
+                _context.Cars.Add(car);
+                _context.SaveChanges();
+
+                return RedirectToAction("ViewCars", customer);
+            }
+
+            else
+            {
+                var viewModel1 = new OneCarAndCustomerViewModel
+                {
+                    Customer = customer
+                };
+                return View("CarForm",viewModel1);
+            }
         }
 
         public ActionResult CarEditForm(Car car)
@@ -55,17 +68,25 @@ namespace MVCCarServiceApp.Controllers
 
         public ActionResult EditCar(Car car)
         {
-            var carInDb = _context.Cars.Find(car.Id);
-            var customer = _context.Customers.Find(car.CustomerId);
+            if (ModelState.IsValid)
+            {
+                var customer = _context.Customers.Find(car.CustomerId);
+                var carInDb = _context.Cars.Find(car.Id);
 
-            carInDb.VIN = car.VIN;
-            carInDb.Make = car.Make;
-            carInDb.Model = car.Model;
-            carInDb.Style = car.Style;
-            carInDb.Color = car.Color;
-            _context.SaveChanges();
-            
-            return RedirectToAction("ViewCars",customer);
+                carInDb.VIN = car.VIN;
+                carInDb.Make = car.Make;
+                carInDb.Model = car.Model;
+                carInDb.Style = car.Style;
+                carInDb.Color = car.Color;
+                _context.SaveChanges();
+
+                return RedirectToAction("ViewCars", customer);
+            }
+
+            else
+            {
+                return View("CarEditForm");
+            }
         }
 
         public ActionResult DeleteCar(Car car)

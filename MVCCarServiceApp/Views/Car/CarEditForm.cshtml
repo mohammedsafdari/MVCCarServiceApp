@@ -3,7 +3,7 @@
     ViewBag.Title = "CarEditForm";
 }
 
-<h2>Car Form</h2>
+<h2>Edit Car</h2>
 
 @using (Html.BeginForm("EditCar", "Car"))
 {
@@ -11,14 +11,14 @@
         <tr>
             <td class="text-center"><strong>VIN</strong></td>
             <td>
-                @Html.TextBoxFor(m=>m.VIN, new { @class = "form-control" })<br />
+                @Html.TextBoxFor(m => m.VIN, new { @class = "form-control" })<br />
                 @*@Html.ValidationMessageFor(m => m.VIN)*@
             </td>
         </tr>
         <tr>
             <td class="text-center"><strong>Make</strong></td>
             <td>
-                @Html.EnumDropDownListFor(m => m.Make, new { @class = "form-control" })<br />
+                @Html.EnumDropDownListFor(m => m.Make, "Select Car Make", new { @class = "form-control" })<br />
                 @*@Html.ValidationMessageFor(m => m.Make)*@
             </td>
         </tr>
@@ -45,6 +45,7 @@
         </tr>
     </table>
     @Html.HiddenFor(c => c.Id)
-    @Html.HiddenFor(c=>c.CustomerId)
-    <button class="btn btn-primary" type="submit">Edit</button>
+    @Html.HiddenFor(c => c.CustomerId)
+    <button class="btn btn-primary" type="submit">Update</button>
+    @Html.ValidationSummary("", new { @class = "text-danger" })
 }

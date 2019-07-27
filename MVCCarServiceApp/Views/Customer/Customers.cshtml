@@ -23,33 +23,17 @@
 
     @Html.TextBox("search", "", new { size = "28" })
 
-    <button id="btnDiv2" class="btn btn-primary" type="submit">Search</button>
+    <button id="btnDiv2" class="btn btn-primary" type="submit">Search</button><br/>
+    @if (Model.CheckInteger == 1)
+    {
+        <span class="text-danger">Search Field Cannot be Empty</span>
+    }
+    @if(Model.CheckInteger == 2)
+    {
+        <span class="text-danger">Invalid input type, enter a Mobile no.</span>
+    }
 </div>
 }
-    
-    @*<table id="SearchTable" style="display">
-            <tr>
-                <td>@Html.ActionLink("Add New Customer", "CustomerForm", "Customer", new { @class = "btn btn-default" })</td>
-            </tr>
-            @using (Html.BeginForm("Customers", "Customer", FormMethod.Get))
-            {
-            <tr>
-                <td>
-                    @Html.RadioButton("option", "FirstName")First Name
-                    @Html.RadioButton("option", "Email")Email Id
-                    @Html.RadioButton("option", "Mobile")Mobile No.
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    @Html.TextBox("search")
-                </td>
-            </tr>
-            <tr>
-                <td><button class="btn btn-primary" type="submit">Search</button></td>
-            </tr>
-            }
-        </table>*@
 
     @if (!Model.Customers.Any())
     {<div id="div3" class="jumbotron" style="margin-top: 5px; margin-bottom:15px">
@@ -58,7 +42,7 @@
 
     else
     {
-    <div id="div3" class="jumbotron" style="margin-top: 5px; margin-bottom:15px">
+    <div id="div3" class="jumbotron" style="margin-top: 5px; margin-bottom:15px;">
         <table class="table table-responsive table-hover table-striped">
             <tr>
                 <th>First Name</th>
@@ -68,21 +52,25 @@
                 <th></th>
                 <th></th>
             </tr>
+        </table>
+        <div style="overflow:scroll; height:170px">
+            <table class="table table-responsive table-hover table-striped">
             @foreach (var item in Model.Customers)
             {
-                <tr>
-                    <td>@item.FirstName</td>
-                    <td>@item.LastName</td>
-                    <td>@item.MobileNo</td>
-                    <td>@item.EmailId</td>
-                    <td>
-                        @Html.ActionLink("View Cars", "ViewCars", "Car", item, new { @class = "btn btn-success" })
-                        @Html.ActionLink("Edit", "CustEditForm", item, new { @class = "btn btn-primary" })
-                        @Html.ActionLink("Delete", "DeleteCustomer", item, new { @class = "btn btn-danger" })
-                    </td>
-                </tr>
+            <tr>
+                <td>@item.FirstName</td>
+                <td>@item.LastName</td>
+                <td>@item.MobileNo</td>
+                <td>@item.EmailId</td>
+                <td>
+                    @Html.ActionLink("View Cars", "ViewCars", "Car", item, new { @class = "btn btn-success" })
+                    @Html.ActionLink("Edit", "CustEditForm", item, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Delete", "DeleteCustomer", item, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
             }
-        </table>
+            </table>
+        </div>
     </div>
     }
 

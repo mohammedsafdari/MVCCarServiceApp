@@ -33,7 +33,7 @@
             <td class="text-center"><strong>Miles</strong></td>
             <td>
                 @Html.TextBoxFor(m => m.CarService.Miles, new { @class = "form-control" })<br />
-                @*@Html.ValidationMessageFor(m => m.VIN)*@
+                @*@Html.ValidationMessageFor(m => m.CarService.Miles)*@
             </td>
             <td class="text-center"><strong>Details</strong></td>
             <td>
@@ -51,12 +51,17 @@
             <td>
                 @Html.DropDownListFor(m => m.CarService.ServiceTypeId,
                new SelectList(Model.ServiceTypes, "Id", "ServiceName"),
-               "Select Car Style", new { @class = "form-control" })<br />
+               "Select Service Type", new { @class = "form-control" })<br />
                 @*@Html.ValidationMessageFor(m => m.Style)*@
             </td>
         </tr>
     </table>
     @Html.HiddenFor(c=>c.Car.Id)
+    @Html.HiddenFor(c=>c.Car.VIN)
+    @Html.HiddenFor(c=>c.Car.Color)
+    @Html.HiddenFor(c=>c.Car.Model)
+    @Html.HiddenFor(c=>c.Car.Make)
+    @Html.HiddenFor(c=>c.Car.Style)
     <button class="btn btn-primary" type="submit">Add Service</button>
     @Html.ValidationSummary("", new { @class = "text-danger" })
 }

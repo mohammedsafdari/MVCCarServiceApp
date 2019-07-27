@@ -18,7 +18,7 @@
         <tr>
             <td class="text-center"><strong>Make</strong></td>
             <td>
-                @Html.EnumDropDownListFor(m => m.Car.Make, new { @class = "form-control" })<br />
+                @Html.EnumDropDownListFor(m => m.Car.Make, "Select Car Make", new { @class = "form-control" })<br />
             </td>
         </tr>
         <tr>
@@ -44,5 +44,10 @@
         </tr>
     </table>
     @Html.HiddenFor(c => c.Customer.Id)
-    <button class="btn btn-primary" type="submit">Add</button>
+    @Html.HiddenFor(c => c.Customer.FirstName)
+    @Html.HiddenFor(c => c.Customer.LastName)
+    @Html.HiddenFor(c => c.Customer.EmailId)
+    @Html.HiddenFor(c => c.Customer.City)
+    <button class="btn btn-primary" type="submit">Add</button><hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
 }

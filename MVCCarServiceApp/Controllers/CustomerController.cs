@@ -80,14 +80,25 @@ namespace MVCCarServiceApp.Controllers
         }
         
 
-        public ActionResult Customers(string search = "", string option = "")
+        public ActionResult Customers(string search = null, string option = "")
         {
-            if(search.Equals(""))
+            if(search == null)
             {
                 var customers = _context.Customers.ToList();
                 var viewModel = new CustAndCustViewModel
                 {
                     Customers = customers
+                };
+                return View(viewModel);
+            }
+
+            else if(search.Equals(""))
+            {
+                var customers = _context.Customers.ToList();
+                var viewModel = new CustAndCustViewModel
+                {
+                    Customers = customers,
+                    CheckInteger = 1
                 };
                 return View(viewModel);
             }
@@ -105,13 +116,27 @@ namespace MVCCarServiceApp.Controllers
 
                 else if (option.Equals("Mobile"))
                 {
-                    var searchMobile = Convert.ToInt64(search);
-                    var customers = _context.Customers.Where(c => c.MobileNo.Equals(searchMobile)).ToList();
-                    var viewModel = new CustAndCustViewModel
+                    try
                     {
-                        Customers = customers
-                    };
-                    return View(viewModel);
+                        var searchMobile = Convert.ToInt64(search);
+                        var customers = _context.Customers.Where(c => c.MobileNo.Equals(searchMobile)).ToList();
+                        var viewModel = new CustAndCustViewModel
+                        {
+                            Customers = customers
+                        };
+                        return View(viewModel);
+                    }
+
+                    catch
+                    {
+                        var customers = _context.Customers.ToList();
+                        var viewModel = new CustAndCustViewModel
+                        {
+                            Customers = customers,
+                            CheckInteger = 2
+                        };
+                        return View(viewModel);
+                    }
                 }
 
                 else

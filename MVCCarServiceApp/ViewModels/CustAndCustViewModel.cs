@@ -10,6 +10,6 @@ namespace MVCCarServiceApp.ViewModels
     {
         public Customer Customer { get; set; }
         public IEnumerable<Customer> Customers { get; set; }
-        public int? CheckInteger { get; set; }
+        public int CheckInteger { get; set; }
     }
 }

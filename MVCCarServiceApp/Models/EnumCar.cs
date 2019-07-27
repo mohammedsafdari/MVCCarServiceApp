@@ -8,7 +8,7 @@ namespace MVCCarServiceApp.Models
 {
     public enum EnumCarBrand
     {
-        Mercedes,
+        Mercedes = 1,
         Lamborghini,
         Audi,
         McLaren,
@@ -23,7 +23,7 @@ namespace MVCCarServiceApp.Models
 
     public enum EnumCarStyle
     {
-        Sedan,
+        Sedan = 1,
         Coupe,
         Hatchback,
         Roadster,

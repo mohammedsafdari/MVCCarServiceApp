@@ -12,11 +12,11 @@ namespace MVCCarServiceApp.Models
         [Required]
         public string VIN { get; set; }
         [Required]
-        public EnumCarBrand Make { get; set; }
+        public EnumCarBrand? Make { get; set; }
         [Required]
         public string Model { get; set; }
         [Required]
-        public EnumCarStyle Style { get; set; }
+        public EnumCarStyle? Style { get; set; }
         [Required]
         public string Color { get; set; }
         public Customer Customer { get; set; }
