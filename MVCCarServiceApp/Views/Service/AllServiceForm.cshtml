@@ -92,14 +92,12 @@ else
                     <td>@item.DateAdded</td>
                     <td>@item.ServiceType.ServiceName</td>
                     <td>
-                        @Html.ActionLink("Delete", "DeleteService", item, new { @class = "btn btn-danger" })
+                        @if (item.DateAdded == DateTime.Today)
+                        {@Html.ActionLink("Delete", "DeleteService", item, new { @class = "btn btn-danger" })}
                     </td>
                 </tr>
             }
-            @if (Model.CheckInteger > 5)
-            {
-                <tr>@Html.ActionLink("Show All", "AllServiceForm", Model.Car)</tr>
-            }
+            <tr>@Html.ActionLink("Show Less", "ServiceForm", Model.Car)</tr>
         </table>
     </div>
 }
