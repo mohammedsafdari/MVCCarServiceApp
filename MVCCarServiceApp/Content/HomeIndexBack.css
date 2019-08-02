@@ -1,0 +1,13 @@
+﻿#div4 {
+    background-image: url('../Images/car-3126964_960_720.jpg');
+    background-repeat: no-repeat;
+    background-size: cover
+}
+
+.checkMark {
+    margin-left: 20px;
+    height: 120px;
+    width: 250px;
+    padding: 20px;
+    background: rgba(255, 255, 255,0.6);
+}

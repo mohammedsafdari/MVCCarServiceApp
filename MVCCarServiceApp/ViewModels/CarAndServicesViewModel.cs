@@ -9,7 +9,7 @@ namespace MVCCarServiceApp.ViewModels
     public class CarAndServicesViewModel
     {
         public Car Car { get; set; }
-        public CarService CarService { get; set; }
+        public ServiceRequest ServiceRequest { get; set; }
         public IEnumerable<CarService> CarServices { get; set; }
         public int CheckInteger { get; set; }
         public IEnumerable<ServiceType> ServiceTypes {get; set;}

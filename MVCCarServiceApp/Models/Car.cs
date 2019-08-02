@@ -9,17 +9,20 @@ namespace MVCCarServiceApp.Models
     public class Car
     {
         public int Id { get; set; }
-        [Required]
+
+        [Required(ErrorMessage ="VIN is Mandatory")]
         public string VIN { get; set; }
-        [Required]
-        public EnumCarBrand? Make { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Make is Mandatory")]
+        public string Make { get; set; }
+        [Required(ErrorMessage = "Model is Mandatory")]
         public string Model { get; set; }
-        [Required]
-        public EnumCarStyle? Style { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Style is Mandatory")]
+        public string Style { get; set; }
+        [Required(ErrorMessage = "Color is Mandatory")]
+        [RegularExpression(@"^[a-zA-Z\s]+$", ErrorMessage = "Color Format is wrong")]
         public string Color { get; set; }
-        public Customer Customer { get; set; }
-        public int CustomerId { get; set; }
+
+        public ApplicationUser User { get; set; }
+        public string UserId { get; set; }
     }
 }

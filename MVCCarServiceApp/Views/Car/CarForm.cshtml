@@ -18,7 +18,7 @@
         <tr>
             <td class="text-center"><strong>Make</strong></td>
             <td>
-                @Html.EnumDropDownListFor(m => m.Car.Make, "Select Car Make", new { @class = "form-control" })<br />
+                @Html.DropDownListFor(m => m.Car.Make, new SelectList(Model.CarMakes, "Make", "Make"), "Select Car Make", new { @class = "form-control" })<br />
             </td>
         </tr>
         <tr>
@@ -31,7 +31,7 @@
         <tr>
             <td class="text-center"><strong>Style</strong></td>
             <td>
-                @Html.EnumDropDownListFor(m => m.Car.Style, "Select Car Style", new { @class = "form-control" })<br />
+                @Html.DropDownListFor(m => m.Car.Style, new SelectList(Model.CarStyles, "Style", "Style"), "Select Car Style", new { @class = "form-control" })<br />
                 @*@Html.ValidationMessageFor(m => m.Style)*@
             </td>
         </tr>
@@ -43,11 +43,12 @@
             </td>
         </tr>
     </table>
-    @Html.HiddenFor(c => c.Customer.Id)
-    @Html.HiddenFor(c => c.Customer.FirstName)
-    @Html.HiddenFor(c => c.Customer.LastName)
-    @Html.HiddenFor(c => c.Customer.EmailId)
-    @Html.HiddenFor(c => c.Customer.City)
+    @Html.HiddenFor(c => c.User.Id)
+    @Html.HiddenFor(c => c.User.FirstName)
+    @Html.HiddenFor(c => c.User.LastName)
+    @Html.HiddenFor(c => c.User.Email)
+    @Html.HiddenFor(c => c.User.City)
+	@Html.HiddenFor(c => c.User.PhoneNumber)
     <button class="btn btn-primary" type="submit">Add</button><hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
 }

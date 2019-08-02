@@ -9,17 +9,20 @@ namespace MVCCarServiceApp.Models
     public class CarService
     {
         public int Id { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Miles field Mandatory")]
         public int Miles { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Price is Mandatory")]
         public int Price { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Details field Mandatory")]
         public string Details { get; set; }
+        [Required(ErrorMessage = "Service type is Mandatory")]
+        public string ServiceType { get; set; }
+
         [DisplayFormat(DataFormatString ="{0:dd-MM-yyyy}")]
         public DateTime DateAdded { get; set; }
+
         public Car Car { get; set; }
         public int CarId { get; set; }
-        public ServiceType ServiceType { get; set; }
-        public int ServiceTypeId { get; set; }
     }
 }

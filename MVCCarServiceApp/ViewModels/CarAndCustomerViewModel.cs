@@ -8,7 +8,7 @@ namespace MVCCarServiceApp.ViewModels
 {
     public class CarAndCustomerViewModel
     {
-        public Customer Customer { get; set; }
+        public ApplicationUser  User { get; set; }
         public IEnumerable<Car> Cars { get; set; }
     }
 }

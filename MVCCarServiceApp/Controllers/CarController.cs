@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using MVCCarServiceApp.Models;
 using MVCCarServiceApp.ViewModels;
 
@@ -10,77 +12,119 @@ namespace MVCCarServiceApp.Controllers
 {
     public class CarController : Controller
     {
-        ApplicationDbContext _context;
-
-        public CarController()
+        [Authorize]
+        public ActionResult CustomerDetails()
         {
-            _context = new ApplicationDbContext();
-        }
+            var id = User.Identity.GetUserId();
 
-        // GET: Car
-        public ActionResult ViewCars(Customer customer)
-        {
+			HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync($"APICustomer?id={id}&type=find").Result;
+			var user = response.Content.ReadAsAsync<ApplicationUser>().Result;
+
+			HttpResponseMessage response1 = GlobalVariables.WebApiClient.GetAsync($"APICar?id={id}&type=whereByUserId").Result;
+			var cars = response1.Content.ReadAsAsync<IEnumerable<Car>>().Result;
+
             var viewModel = new CarAndCustomerViewModel
             {
-                Customer = customer,
-                Cars = _context.Cars.Where(c => c.CustomerId == customer.Id).ToList()
+                User = user,
+                Cars = cars
+            };
+            return View("ViewCars", viewModel);
+        }
+
+        [Authorize]
+        // GET: Car
+        public ActionResult ViewCars(ApplicationUser user)
+        {
+			HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync($"APICustomer?id={user.Id}&type=find").Result;
+			var userInDb = response.Content.ReadAsAsync<ApplicationUser>().Result;
+
+			HttpResponseMessage response1 = GlobalVariables.WebApiClient.GetAsync($"APICar?id={user.Id}&type=whereByUserId").Result;
+			var cars = response1.Content.ReadAsAsync<IEnumerable<Car>>().Result;
+
+			var viewModel = new CarAndCustomerViewModel
+            {
+                User = userInDb,
+                Cars = cars
             };
             return View(viewModel);
         }
 
-        public ActionResult CarForm(Customer customer)
+        public ActionResult CarForm(ApplicationUser user)
         {
-            var viewModel = new OneCarAndCustomerViewModel
+			HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("APICarMake").Result;
+			var carMakes = response.Content.ReadAsAsync<IEnumerable<CarMake>>().Result;
+
+			HttpResponseMessage response1 = GlobalVariables.WebApiClient.GetAsync("APICarStyle").Result;
+			var carStyles = response1.Content.ReadAsAsync<IEnumerable<CarStyle>>().Result;
+
+			var viewModel = new OneCarAndCustomerViewModel
             {
-                Customer = customer
+                User = user,
+                CarMakes = carMakes,
+                CarStyles = carStyles
             };
             return View(viewModel);
         }
 
         public ActionResult AddCar(OneCarAndCustomerViewModel viewModel)
         {
-            var customer = _context.Customers.Find(viewModel.Customer.Id);
+			HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync($"APICustomer?id={viewModel.User.Id}&type=find").Result;
+			var user = response.Content.ReadAsAsync<ApplicationUser>().Result;
 
             if (ModelState.IsValid)
             {
-                viewModel.Car.CustomerId = viewModel.Customer.Id;
-                var car = viewModel.Car;
-                _context.Cars.Add(car);
-                _context.SaveChanges();
+                viewModel.Car.UserId = viewModel.User.Id;
 
-                return RedirectToAction("ViewCars", customer);
+				HttpResponseMessage response1 = GlobalVariables.WebApiClient.PostAsJsonAsync("APICar", viewModel.Car).Result;
+
+                return RedirectToAction("ViewCars", user);
             }
 
             else
             {
-                var viewModel1 = new OneCarAndCustomerViewModel
+				HttpResponseMessage response2 = GlobalVariables.WebApiClient.GetAsync("APICarMake").Result;
+				var carMakes = response2.Content.ReadAsAsync<IEnumerable<CarMake>>().Result;
+
+				HttpResponseMessage response1 = GlobalVariables.WebApiClient.GetAsync("APICarStyle").Result;
+				var carStyles = response1.Content.ReadAsAsync<IEnumerable<CarStyle>>().Result;
+
+				var viewModel1 = new OneCarAndCustomerViewModel
                 {
-                    Customer = customer
+                    User = user,
+					CarMakes = carMakes,
+					CarStyles = carStyles
                 };
-                return View("CarForm",viewModel1);
+                return View("CarForm", viewModel1);
             }
         }
 
         public ActionResult CarEditForm(Car car)
         {
-            return View(car);
+			HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("APICarMake").Result;
+			var carMakes = response.Content.ReadAsAsync<IEnumerable<CarMake>>().Result;
+
+			HttpResponseMessage response1 = GlobalVariables.WebApiClient.GetAsync("APICarStyle").Result;
+			var carStyles = response1.Content.ReadAsAsync<IEnumerable<CarStyle>>().Result;
+
+			var viewModel = new OneCarAndCustomerViewModel
+            {
+                Car = car,
+                CarMakes = carMakes,
+                CarStyles = carStyles
+            };
+            return View(viewModel);
         }
 
         public ActionResult EditCar(Car car)
         {
             if (ModelState.IsValid)
             {
-                var customer = _context.Customers.Find(car.CustomerId);
-                var carInDb = _context.Cars.Find(car.Id);
+				HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync($"APICustomer?id={car.UserId}&type=find").Result;
+				var user = response.Content.ReadAsAsync<ApplicationUser>().Result;
 
-                carInDb.VIN = car.VIN;
-                carInDb.Make = car.Make;
-                carInDb.Model = car.Model;
-                carInDb.Style = car.Style;
-                carInDb.Color = car.Color;
-                _context.SaveChanges();
+				HttpResponseMessage response1 = GlobalVariables.WebApiClient.PutAsJsonAsync("APICar",car).Result;
 
-                return RedirectToAction("ViewCars", customer);
+				return RedirectToAction("ViewCars", user);
             }
 
             else
@@ -91,13 +135,12 @@ namespace MVCCarServiceApp.Controllers
 
         public ActionResult DeleteCar(Car car)
         {
-            var car1 = _context.Cars.Find(car.Id);
-            var customer = _context.Customers.Find(car.CustomerId);
+			HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync($"APICustomer?id={car.UserId}&type=find").Result;
+			var user = response.Content.ReadAsAsync<ApplicationUser>().Result;
 
-            _context.Cars.Remove(car1);
-            _context.SaveChanges();
-            
-            return RedirectToAction("ViewCars",customer);
+			HttpResponseMessage response1 = GlobalVariables.WebApiClient.DeleteAsync($"APICar/"+car.Id).Result;
+
+			return RedirectToAction("ViewCars", user);
         }
     }
 }

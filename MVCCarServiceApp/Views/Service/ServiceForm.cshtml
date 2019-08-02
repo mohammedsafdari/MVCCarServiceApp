@@ -32,25 +32,25 @@
         <tr>
             <td class="text-center"><strong>Miles</strong></td>
             <td>
-                @Html.TextBoxFor(m => m.CarService.Miles, new { @class = "form-control" })<br />
+                @Html.TextBoxFor(m=>m.ServiceRequest.Miles, new { @class = "form-control" })<br />
                 @*@Html.ValidationMessageFor(m => m.CarService.Miles)*@
             </td>
             <td class="text-center"><strong>Details</strong></td>
             <td>
-                @Html.TextBoxFor(m => m.CarService.Details, new { @class = "form-control" })<br />
+                @Html.TextBoxFor(m => m.ServiceRequest.Details, new { @class = "form-control" })<br />
                 @*@Html.ValidationMessageFor(m => m.Make)*@
             </td>
         </tr>
         <tr>
             <td class="text-center"><strong>Price</strong></td>
             <td>
-                @Html.TextBoxFor(m => m.CarService.Price, new { @class = "form-control" })<br />
+                @Html.TextBoxFor(m => m.ServiceRequest.Price, new { @class = "form-control" })<br />
                 @*@Html.ValidationMessageFor(m => m.Model)*@
             </td>
             <td class="text-center"><strong>Service Type</strong></td>
             <td>
-                @Html.DropDownListFor(m => m.CarService.ServiceTypeId,
-               new SelectList(Model.ServiceTypes, "Id", "ServiceName"),
+                @Html.DropDownListFor(m => m.ServiceRequest.ServiceType,
+               new SelectList(Model.ServiceTypes, "ServiceName", "ServiceName"),
                "Select Service Type", new { @class = "form-control" })<br />
                 @*@Html.ValidationMessageFor(m => m.Style)*@
             </td>
@@ -92,7 +92,7 @@ else
                     <td>@item.Price</td>
                     <td>@item.Details</td>
                     <td>@item.DateAdded</td>
-                    <td>@item.ServiceType.ServiceName</td>
+                    <td>@item.ServiceType</td>
                     <td>
                         @if(item.DateAdded == DateTime.Today){
                         @Html.ActionLink("Delete", "DeleteService", item, new { @class = "btn btn-danger" })

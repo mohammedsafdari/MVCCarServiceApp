@@ -27,7 +27,8 @@ namespace MVCCarServiceApp
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/div.css",
-                      "~/Content/FormValidation.css"));
+                      "~/Content/FormValidation.css",
+                      "~/Content/HomeIndex.css"));
         }
     }
 }

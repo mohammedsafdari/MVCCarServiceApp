@@ -1,4 +1,4 @@
-﻿@model MVCCarServiceApp.Models.Customer
+﻿@model MVCCarServiceApp.Models.ApplicationUser
 @{
     ViewBag.Title = "CustomerForm";
 }
@@ -25,14 +25,14 @@
         <tr>
             <td class="text-center"><strong>Email Id</strong></td>
             <td>
-                @Html.TextBoxFor(m => m.EmailId, new { @class = "form-control" })<br />
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })<br />
                 @*@Html.ValidationMessageFor(m => m.EmailId)*@
             </td>
         </tr>
         <tr>
             <td class="text-center"><strong>Mobile No.</strong></td>
             <td>
-                @Html.TextBoxFor(m => m.MobileNo, new { @class = "form-control" })<br />
+                @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })<br />
                 @*@Html.ValidationMessageFor(m => m.MobileNo)*@
             </td>
         </tr>

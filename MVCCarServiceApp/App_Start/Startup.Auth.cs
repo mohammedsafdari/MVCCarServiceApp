@@ -54,9 +54,9 @@ namespace MVCCarServiceApp
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "357173075201109",
+               appSecret: "267b1e29bfcb7688f11fdb9a040fe1de");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{

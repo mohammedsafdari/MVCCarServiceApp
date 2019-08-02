@@ -8,8 +8,7 @@ namespace MVCCarServiceApp.ViewModels
 {
     public class CustAndCustViewModel
     {
-        public Customer Customer { get; set; }
-        public IEnumerable<Customer> Customers { get; set; }
+        public IEnumerable<ApplicationUser> Users { get; set; }
         public int CheckInteger { get; set; }
     }
 }

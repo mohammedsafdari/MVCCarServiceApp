@@ -6,10 +6,12 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    @RenderSection("HomeIndex",required:false)
+    @RenderSection("CustomerPage", required: false)
+    @RenderSection("RegisterPage",required:false)
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background:black; border-bottom:none; height:10px">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -17,13 +19,27 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("MS Auto Garages", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @*@Html.ActionLink("MS Auto Garage", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+               <a class="navbar-brand" href="@Url.Action("Index", "Home", new { area = "" })" style="padding:0px;">
+                        <img src="~/Images/ezgif-1-b4fe78f814d01.jpg" alt="" style="height:60px" />
+               </a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Customer List", "Customers", "Customer")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    @if (ViewContext.HttpContext.User.IsInRole(MVCCarServiceApp.Models.Roles.Admin))
+                    {
+                        <li>@Html.ActionLink("Customer List", "Customers", "Customer", "", new { @class="navElement" })</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("View Cars", "CustomerDetails", "Car", "", new { @class = "navElement" })</li>
+                    }
+                    @if (ViewContext.HttpContext.User.IsInRole(MVCCarServiceApp.Models.Roles.Admin))
+                    {
+                        <li>@Html.ActionLink("Admin Panel", "AdminPanel", "Admin", "", new { @class="navElement" })</li>
+                    }
+                    <li>@Html.ActionLink("About", "About", "Home", "", new { @class = "navElement" })</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home", "", new { @class = "navElement" })</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -31,8 +47,8 @@
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
+        <footer style="clear:both">
+            <hr />
             <p>&copy; @DateTime.Now.Year - MS Auto Garage Application</p>
         </footer>
     </div>

@@ -3,41 +3,41 @@
     ViewBag.Title = "CustomerDetails";
 }
 
-<h2>@Model.Customer.FirstName @Model.Customer.LastName Details</h2>
+<h2>@Model.User.FirstName @Model.User.LastName Details</h2>
 
 <hr />
 
 <table class="table table-responsive table-hover table-bordered table-striped">
     <tr>
         <td>ID</td>
-        <td>@Model.Customer.Id</td>
+        <td>@Model.User.Id</td>
     </tr>
     <tr>
         <td>First Name</td>
-        <td>@Model.Customer.FirstName</td>
+        <td>@Model.User.FirstName</td>
     </tr>
     <tr>
         <td>Last Name</td>
-        <td>@Model.Customer.LastName</td>
+        <td>@Model.User.LastName</td>
     </tr>
     <tr>
         <td>Email ID</td>
-        <td>@Model.Customer.EmailId</td>
+        <td>@Model.User.Email</td>
     </tr>
     <tr>
         <td>Mobile No.</td>
-        <td>@Model.Customer.MobileNo</td>
+        <td>@Model.User.PhoneNumber</td>
     </tr>
     <tr>
         <td>City</td>
-        <td>@Model.Customer.City</td>
+        <td>@Model.User.City</td>
     </tr>
 </table>
 
-@Html.ActionLink("Add New Car", "CarForm", "Car", Model.Customer, new { @class = "btn btn-default" })
+@Html.ActionLink("Add New Car", "CarForm", "Car", Model.User, new { @class = "btn btn-default" })
 
 <hr />
-<h2>Car Record for @Model.Customer.FirstName @Model.Customer.LastName</h2>
+<h2>Car Record for @Model.User.FirstName @Model.User.LastName</h2>
 <hr />
 
 @if (!Model.Cars.Any())

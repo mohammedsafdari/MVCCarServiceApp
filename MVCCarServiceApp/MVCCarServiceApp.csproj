@@ -193,7 +193,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="APIs\CustomersController.cs" />
+    <Compile Include="APIs\APICarController.cs" />
+    <Compile Include="APIs\APICarMakeController.cs" />
+    <Compile Include="APIs\APICarStyleController.cs" />
+    <Compile Include="APIs\APICustomerController.cs" />
+    <Compile Include="APIs\APIServiceController.cs" />
+    <Compile Include="APIs\APIServiceRequestController.cs" />
+    <Compile Include="APIs\APIServiceTypeController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -201,14 +207,17 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CarController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
+    <Compile Include="Controllers\ServiceTypeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="GlobalVariables.cs" />
     <Compile Include="Migrations\201907200708536_InitialMigration.cs" />
     <Compile Include="Migrations\201907200708536_InitialMigration.Designer.cs">
       <DependentUpon>201907200708536_InitialMigration.cs</DependentUpon>
@@ -241,31 +250,83 @@
     <Compile Include="Migrations\201907250453282_addedServiceTypeForeignKeyToCarServiceModel.Designer.cs">
       <DependentUpon>201907250453282_addedServiceTypeForeignKeyToCarServiceModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907290618255_addedMakeAndStyleModels.cs" />
+    <Compile Include="Migrations\201907290618255_addedMakeAndStyleModels.Designer.cs">
+      <DependentUpon>201907290618255_addedMakeAndStyleModels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907290906108_updatedApplicationUser.cs" />
+    <Compile Include="Migrations\201907290906108_updatedApplicationUser.Designer.cs">
+      <DependentUpon>201907290906108_updatedApplicationUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907291132052_addedUserIdInCarModel.cs" />
+    <Compile Include="Migrations\201907291132052_addedUserIdInCarModel.Designer.cs">
+      <DependentUpon>201907291132052_addedUserIdInCarModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907291253283_removedCustomerModel.cs" />
+    <Compile Include="Migrations\201907291253283_removedCustomerModel.Designer.cs">
+      <DependentUpon>201907291253283_removedCustomerModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907310843057_testMigration.cs" />
+    <Compile Include="Migrations\201907310843057_testMigration.Designer.cs">
+      <DependentUpon>201907310843057_testMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907311542298_updatedCarServiceModel2.cs" />
+    <Compile Include="Migrations\201907311542298_updatedCarServiceModel2.Designer.cs">
+      <DependentUpon>201907311542298_updatedCarServiceModel2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908010905108_updatedValidations.cs" />
+    <Compile Include="Migrations\201908010905108_updatedValidations.Designer.cs">
+      <DependentUpon>201908010905108_updatedValidations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908021535407_addedServiceRequestModel.cs" />
+    <Compile Include="Migrations\201908021535407_addedServiceRequestModel.Designer.cs">
+      <DependentUpon>201908021535407_addedServiceRequestModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Car.cs" />
+    <Compile Include="Models\CarMake.cs" />
     <Compile Include="Models\CarService.cs" />
-    <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\CarStyle.cs" />
     <Compile Include="Models\EnumCar.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Roles.cs" />
+    <Compile Include="Models\ServiceRequest.cs" />
     <Compile Include="Models\ServiceType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\AdminViewModel.cs" />
     <Compile Include="ViewModels\CarAndCustomerViewModel.cs" />
     <Compile Include="ViewModels\CarAndServicesViewModel.cs" />
     <Compile Include="ViewModels\CustAndCustViewModel.cs" />
     <Compile Include="ViewModels\OneCarAndCustomerViewModel.cs" />
+    <Compile Include="ViewModels\ServiceTypeViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\AditiTheGenius.css" />
+    <Content Include="Content\BackgroundImage.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\CustomerBackground.css" />
     <Content Include="Content\div.css" />
     <Content Include="Content\FormValidation.css" />
+    <Content Include="Content\HomeIndex.css" />
+    <Content Include="Content\HomeIndexBack.css" />
+    <Content Include="Content\RegFormBackground.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\09.jpg" />
+    <Content Include="Images\antique-1868726__340.jpg" />
+    <Content Include="Images\car-3126964_960_720.jpg" />
+    <Content Include="Images\carsectionhero_6f49.resizeViewPort.noScale.firstDesktopImageReference.jpg" />
+    <Content Include="Images\desktop-3246124_960_720.jpg" />
+    <Content Include="Images\ezgif-1-b4fe78f814d01.jpg" />
+    <Content Include="Images\joker-lamborghini-and-batmobile_1562105326.jpg" />
+    <Content Include="Images\output-onlinepngtools %281%29.png" />
+    <Content Include="Images\sea-edge-79ab30e2.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -325,9 +386,12 @@
     <Content Include="Views\Car\CarEditForm.cshtml" />
     <Content Include="Views\Service\ServiceForm.cshtml" />
     <Content Include="Views\Service\AllServiceForm.cshtml" />
+    <Content Include="Views\Admin\AdminPanel.cshtml" />
+    <Content Include="Views\Admin\PendingRequests.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\ServiceType\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -366,6 +430,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907250453282_addedServiceTypeForeignKeyToCarServiceModel.resx">
       <DependentUpon>201907250453282_addedServiceTypeForeignKeyToCarServiceModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907290618255_addedMakeAndStyleModels.resx">
+      <DependentUpon>201907290618255_addedMakeAndStyleModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907290906108_updatedApplicationUser.resx">
+      <DependentUpon>201907290906108_updatedApplicationUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907291132052_addedUserIdInCarModel.resx">
+      <DependentUpon>201907291132052_addedUserIdInCarModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907291253283_removedCustomerModel.resx">
+      <DependentUpon>201907291253283_removedCustomerModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907310843057_testMigration.resx">
+      <DependentUpon>201907310843057_testMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907311542298_updatedCarServiceModel2.resx">
+      <DependentUpon>201907311542298_updatedCarServiceModel2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908010905108_updatedValidations.resx">
+      <DependentUpon>201908010905108_updatedValidations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908021535407_addedServiceRequestModel.resx">
+      <DependentUpon>201908021535407_addedServiceRequestModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -3,6 +3,10 @@
     ViewBag.Title = "Customer List";
 }
 
+@section CustomerPage{
+        <link href="@Url.Content("~/Content/CustomerBackground.css")" rel="stylesheet" />
+    }
+
 <h1 class="text-center jumbotron" style=" font-family:'Agency FB'; font-size:xx-large; height:130px; margin-top:10px; margin-bottom:10px; vertical-align:middle "><strong><u>CUSTOMER LIST</u></strong></h1>
 <hr />
 
@@ -23,19 +27,27 @@
 
     @Html.TextBox("search", "", new { size = "28" })
 
-    <button id="btnDiv2" class="btn btn-primary" type="submit">Search</button><br/>
+    <button id="btnDiv2" class="btn btn-primary" type="submit">Search</button><br />
     @if (Model.CheckInteger == 1)
     {
         <span class="text-danger">Search Field Cannot be Empty</span>
     }
-    @if(Model.CheckInteger == 2)
+    @if (Model.CheckInteger == 2)
     {
         <span class="text-danger">Invalid input type, enter a Mobile no.</span>
+    }
+    @if (Model.CheckInteger == 3)
+    {
+        <span class="text-danger">Invalid input type, enter a Email Id</span>
+    }
+    @if (Model.CheckInteger == 4)
+    {
+        <span class="text-danger">Invalid input type, enter a Name</span>
     }
 </div>
 }
 
-    @if (!Model.Customers.Any())
+    @if (!Model.Users.Any())
     {<div id="div3" class="jumbotron" style="margin-top: 5px; margin-bottom:15px">
     <h4>No Customers Found</h4> 
     </div>}
@@ -50,18 +62,17 @@
                 <th>Mobile No.</th>
                 <th>Email Id</th>
                 <th></th>
-                <th></th>
             </tr>
         </table>
         <div style="overflow:scroll; height:170px">
             <table class="table table-responsive table-hover table-striped">
-            @foreach (var item in Model.Customers)
+            @foreach (var item in Model.Users)
             {
             <tr>
                 <td>@item.FirstName</td>
                 <td>@item.LastName</td>
-                <td>@item.MobileNo</td>
-                <td>@item.EmailId</td>
+                <td>@item.PhoneNumber</td>
+                <td>@item.Email</td>
                 <td>
                     @Html.ActionLink("View Cars", "ViewCars", "Car", item, new { @class = "btn btn-success" })
                     @Html.ActionLink("Edit", "CustEditForm", item, new { @class = "btn btn-primary" })

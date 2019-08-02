@@ -1,0 +1,61 @@
+﻿@model MVCCarServiceApp.ViewModels.AdminViewModel
+@{
+    ViewBag.Title = "AdminPanel";
+}
+
+<h2 class="text-center">Admin Panel</h2>
+
+<hr />
+
+@Html.ActionLink("PENDING REQUESTS","PendingRequests", "", new { @class="btn btn-primary", style="width:100%"})
+
+<hr />
+
+<div class="row">
+	<div class="col-md-4">
+		<div style="overflow:scroll; height:300px">
+		<table class="table table-bordered table-hover table-striped text-center">
+			@foreach (var item in Model.CarMakes)
+			{
+				<tr><td>@item.Make</td></tr>
+			}
+		</table>
+		</div>
+			@using (Html.BeginForm("AddCarMake", "Admin"))
+			{
+				@Html.TextBoxFor(c => c.CarMake.Make)
+				<button type="submit" class="btn btn-primary btn">Add Make</button>
+			}
+	</div>
+	<div class="col-md-4">
+		<div style="overflow:scroll; height:300px">
+			<table class="table table-bordered table-hover table-striped text-center">
+				@foreach (var item in Model.CarStyles)
+				{
+					<tr><td>@item.Style</td></tr>
+				}
+			</table>
+		</div>
+			@using (Html.BeginForm("AddCarStyle", "Admin"))
+			{
+				@Html.TextBoxFor(c => c.CarStyle.Style)
+				<button type="submit" class="btn btn-primary">Add Style</button>
+			}
+		
+	</div>
+	<div class="col-md-4">
+		<div style="overflow:scroll; height:300px">
+		<table class="table table-bordered table-hover table-striped text-center">
+			@foreach (var item in Model.ServiceTypes)
+			{
+				<tr><td>@item.ServiceName</td></tr>
+			}
+		</table>
+		</div>
+			@using (Html.BeginForm("AddServiceType", "Admin"))
+			{
+				@Html.TextBoxFor(c => c.ServiceType.ServiceName)
+				<button type="submit" class="btn btn-primary">Add Make</button>
+			}
+	</div>
+</div>
