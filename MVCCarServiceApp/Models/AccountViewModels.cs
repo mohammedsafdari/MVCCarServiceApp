@@ -5,9 +5,11 @@ namespace MVCCarServiceApp.Models
 {
     public class ExternalLoginConfirmationViewModel
     {
-        [Required]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
+        //[Required]
+        //[Display(Name = "Email")]
+        //public string Email { get; set; }
+
+        public ApplicationUser User { get; set; }
     }
 
     public class ExternalLoginListViewModel

@@ -2,6 +2,11 @@
 @{
     ViewBag.Title = "Register";
 }
+
+@section css{
+    <link href="~/Content/RegFormBackground.css" rel="stylesheet" />
+}
+
 <h2>@ViewBag.Title.</h2>
 <h3>Associate your @ViewBag.LoginProvider account.</h3>
 
@@ -11,17 +16,47 @@
 
     <h4>Association Form</h4>
     <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <p class="text-info">
+    @Html.ValidationSummary(true ,"", new { @class = "text-danger" })
+    <p class="text-success">
         You've successfully authenticated with <strong>@ViewBag.LoginProvider</strong>.
-        Please enter a user name for this site below and click the Register button to finish
-        logging in.
+        Please enter the following details for this site below
+    </p>
+    <p class="text-success">
+        and click the Register button to finish logging in.
     </p>
     <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.User.FirstName, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+            @Html.TextBoxFor(m => m.User.FirstName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.User.FirstName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.User.LastName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.User.LastName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.User.LastName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.User.City, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.User.City, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.User.City, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.User.PhoneNumber, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.User.PhoneNumber, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.User.PhoneNumber, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.User.Email, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.User.Email, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.User.Email, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group">

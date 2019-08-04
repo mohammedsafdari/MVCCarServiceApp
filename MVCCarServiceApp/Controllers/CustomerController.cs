@@ -55,7 +55,7 @@ namespace MVCCarServiceApp.Controllers
             {
 				HttpResponseMessage response = GlobalVariables.WebApiClient.PutAsJsonAsync("APICustomer", user).Result;
 
-                return RedirectToAction("Customers");
+                return RedirectToAction("CustomerDetails", "Car");
             }
             else
                 return RedirectToAction("CustEditForm", user);

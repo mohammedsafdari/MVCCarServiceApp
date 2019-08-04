@@ -34,7 +34,10 @@
     </tr>
 </table>
 
+@if (!ViewContext.HttpContext.User.IsInRole(MVCCarServiceApp.Models.Roles.Admin)){
+@Html.ActionLink("Edit Details", "CustEditForm", "Customer", Model.User, new { @class = "btn btn-primary", style="margin-right:2px" })
 @Html.ActionLink("Add New Car", "CarForm", "Car", Model.User, new { @class = "btn btn-default" })
+}
 
 <hr />
 <h2>Car Record for @Model.User.FirstName @Model.User.LastName</h2>
@@ -46,32 +49,37 @@
 else
 {
     <div class="jumbotron" style="margin-top: 5px; margin-bottom:15px">
-        <table class="table table-responsive table-hover table-striped">
-            <tr>
-                <th>VIN</th>
-                <th>Make</th>
-                <th>Model</th>
-                <th>Style</th>
-                <th>Color</th>
-                <th></th>
-                <th></th>
-            </tr>
-            @foreach (var item in Model.Cars)
-            {
+        <div style="overflow-y: auto; height: 270px;">
+            <table class="table table-responsive table-hover table-striped">
                 <tr>
-                    <td>@item.VIN</td>
-                    <td>@item.Make</td>
-                    <td>@item.Model</td>
-                    <td>@item.Style</td>
-                    <td>@item.Color</td>
-                    <td>@Html.ActionLink("Add New Service", "ServiceForm", "Service", item, new { @class = "btn btn-success" })</td>
-                    <td>
-                        @Html.ActionLink("Edit", "CarEditForm", item, new { @class = "btn btn-primary" })
-                        @Html.ActionLink("Delete", "DeleteCar", item, new { @class = "btn btn-danger" })
-                    </td>
+                    <th style="position: sticky; top: 0;">VIN</th>
+                    <th style="position: sticky; top: 0;">Make</th>
+                    <th style="position: sticky; top: 0;">Model</th>
+                    <th style="position: sticky; top: 0;">Style</th>
+                    <th style="position: sticky; top: 0;">Color</th>
+                    <th style="position: sticky; top: 0;"></th>
+                    <th style="position: sticky; top: 0;"></th>
                 </tr>
-            }
-        </table>
+                @foreach (var item in Model.Cars)
+                {
+                    <tr>
+                        <td>@item.VIN</td>
+                        <td>@item.Make</td>
+                        <td>@item.Model</td>
+                        <td>@item.Style</td>
+                        <td>@item.Color</td>
+                        <td>@Html.ActionLink("Services", "ServiceForm", "Service", item, new { @class = "btn btn-success" })</td>
+                        <td>
+                            @if (!ViewContext.HttpContext.User.IsInRole(MVCCarServiceApp.Models.Roles.Admin))
+                            {
+                                @Html.ActionLink("Edit", "CarEditForm", item, new { @class = "btn btn-primary", style="margin-right:2px" })
+                                @Html.ActionLink("Delete", "DeleteCar", item, new { @class = "btn btn-danger" })
+                            }
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
     </div>
 }
 

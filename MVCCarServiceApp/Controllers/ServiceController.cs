@@ -33,12 +33,16 @@ namespace MVCCarServiceApp.Controllers
             HttpResponseMessage response1 = GlobalVariables.WebApiClient.GetAsync("APIServiceType").Result;
             var serviceTypes = response1.Content.ReadAsAsync<IEnumerable<ServiceType>>().Result;
 
+            HttpResponseMessage response2 = GlobalVariables.WebApiClient.GetAsync("APIServiceRequest").Result;
+            var requests = response2.Content.ReadAsAsync<IEnumerable<ServiceRequest>>().Result;
+
             var viewModel = new CarAndServicesViewModel
             {
                 Car = car,
                 CarServices = serviceList,
                 CheckInteger = i,
-                ServiceTypes = serviceTypes
+                ServiceTypes = serviceTypes,
+                ServiceRequests = requests
             };
 
             return View(viewModel);
@@ -52,11 +56,15 @@ namespace MVCCarServiceApp.Controllers
             HttpResponseMessage response1 = GlobalVariables.WebApiClient.GetAsync("APIServiceType").Result;
             var serviceTypes = response1.Content.ReadAsAsync<IEnumerable<ServiceType>>().Result;
 
+            HttpResponseMessage response2 = GlobalVariables.WebApiClient.GetAsync("APIServiceRequest").Result;
+            var requests = response2.Content.ReadAsAsync<IEnumerable<ServiceRequest>>().Result;
+
             var viewModel = new CarAndServicesViewModel
             {
                 Car = car,
                 CarServices = services,
-                ServiceTypes = serviceTypes
+                ServiceTypes = serviceTypes,
+                ServiceRequests = requests
             };
 
             return View(viewModel);
@@ -113,6 +121,16 @@ namespace MVCCarServiceApp.Controllers
 			var car = response2.Content.ReadAsAsync<Car>().Result;
 
 			HttpResponseMessage response = GlobalVariables.WebApiClient.DeleteAsync($"APIService/{service.Id}").Result;
+
+            return RedirectToAction("ServiceForm", car);
+        }
+
+        public ActionResult DeleteServiceRequest(ServiceRequest request)
+        {
+            HttpResponseMessage response2 = GlobalVariables.WebApiClient.GetAsync($"APICar?id={request.CarId}&type=find").Result;
+            var car = response2.Content.ReadAsAsync<Car>().Result;
+
+            HttpResponseMessage response = GlobalVariables.WebApiClient.DeleteAsync("APIServiceRequest/" + request.Id).Result;
 
             return RedirectToAction("ServiceForm", car);
         }

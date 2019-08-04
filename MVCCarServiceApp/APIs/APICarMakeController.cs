@@ -35,5 +35,17 @@ namespace MVCCarServiceApp.APIs
 
 			return CreatedAtRoute("DefaultApi", new { id = make.Id }, make);
 		}
-	}
+
+        [HttpDelete] //Redundant
+        public IHttpActionResult DeleteCarMake(int id)
+        {
+            var makeInDb = _context.CarMakes.Find(id);
+            if (makeInDb == null)
+                NotFound();
+            _context.CarMakes.Remove(makeInDb);
+            _context.SaveChanges();
+
+            return Ok();
+        }
+    }
 }

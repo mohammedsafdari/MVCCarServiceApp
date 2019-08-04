@@ -35,5 +35,17 @@ namespace MVCCarServiceApp.APIs
 
 			return CreatedAtRoute("DefaultApi", new { id = style.Id }, style);
 		}
-	}
+
+        [HttpDelete] //Redundant
+        public IHttpActionResult DeleteCarStyle(int id)
+        {
+            var styleInDb = _context.CarStyles.Find(id);
+            if (styleInDb == null)
+                NotFound();
+            _context.CarStyles.Remove(styleInDb);
+            _context.SaveChanges();
+
+            return Ok();
+        }
+    }
 }

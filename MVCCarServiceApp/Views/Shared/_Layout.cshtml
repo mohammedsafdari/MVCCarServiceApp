@@ -6,9 +6,7 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    @RenderSection("HomeIndex",required:false)
-    @RenderSection("CustomerPage", required: false)
-    @RenderSection("RegisterPage",required:false)
+    @RenderSection("css", required: false)
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top" style="background:black; border-bottom:none; height:10px">
@@ -26,18 +24,27 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+
                     @if (ViewContext.HttpContext.User.IsInRole(MVCCarServiceApp.Models.Roles.Admin))
                     {
-                        <li>@Html.ActionLink("Customer List", "Customers", "Customer", "", new { @class="navElement" })</li>
+                        <li>@Html.ActionLink("Customer List", "Customers", "Customer", "", new { @class = "navElement" })</li>
+                        <li>@Html.ActionLink("Admin Panel", "AdminPanel", "Admin", "", new { @class = "navElement" })</li>
                     }
                     else
                     {
                         <li>@Html.ActionLink("View Cars", "CustomerDetails", "Car", "", new { @class = "navElement" })</li>
                     }
-                    @if (ViewContext.HttpContext.User.IsInRole(MVCCarServiceApp.Models.Roles.Admin))
-                    {
-                        <li>@Html.ActionLink("Admin Panel", "AdminPanel", "Admin", "", new { @class="navElement" })</li>
-                    }
+                    @RenderSection("navbar", required: false)
+                <li>
+                    <div class="dropdown">
+                        <button class="dropbtn">Dropdown</button>
+                        <div class="dropdown-content">
+                            <a href="#">Link 1</a>
+                            <a href="#">Link 2</a>
+                            <a href="#">Link 3</a>
+                        </div>
+                    </div>
+                </li>
                     <li>@Html.ActionLink("About", "About", "Home", "", new { @class = "navElement" })</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home", "", new { @class = "navElement" })</li>
                 </ul>

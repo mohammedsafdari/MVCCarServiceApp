@@ -32,7 +32,7 @@
         <tr>
             <td class="text-center"><strong>Miles</strong></td>
             <td>
-                @Html.TextBoxFor(m=>m.ServiceRequest.Miles, new { @class = "form-control" })<br />
+                @Html.TextBoxFor(m => m.ServiceRequest.Miles, new { @class = "form-control" })<br />
                 @*@Html.ValidationMessageFor(m => m.VIN)*@
             </td>
             <td class="text-center"><strong>Details</strong></td>
@@ -65,11 +65,11 @@
 }
 
 <hr />
-<h2>Past Service Records</h2>
+<h2>Pending Requests</h2>
 <hr />
 
-@if (!Model.CarServices.Any())
-{<h4>No Past Services</h4> }
+@if (!Model.ServiceRequests.Any())
+{<h4>No Pending Requests</h4> }
 
 else
 {
@@ -83,7 +83,7 @@ else
                 <th>Service Type</th>
                 <th></th>
             </tr>
-            @foreach (var item in Model.CarServices)
+            @foreach (var item in Model.ServiceRequests)
             {
                 <tr>
                     <td>@item.Miles</td>
@@ -92,13 +92,51 @@ else
                     <td>@item.DateAdded</td>
                     <td>@item.ServiceType</td>
                     <td>
-                        @if (item.DateAdded == DateTime.Today)
-                        {@Html.ActionLink("Delete", "DeleteService", item, new { @class = "btn btn-danger" })}
+                        @Html.ActionLink("Delete", "DeleteServiceRequest", item, new { @class = "btn btn-danger" })
                     </td>
                 </tr>
             }
-            <tr>@Html.ActionLink("Show Less", "ServiceForm", Model.Car)</tr>
         </table>
+    </div>
+}
+
+<hr />
+<h2>Past Service Records</h2>
+<hr />
+
+@if (!Model.CarServices.Any())
+{<h4>No Past Services</h4> }
+
+else
+{
+    <div class="jumbotron" style="margin-top: 5px; margin-bottom:15px">
+        <div style="overflow-y: auto; height: 270px;">
+            <table class="table table-responsive table-hover table-striped">
+                <tr>
+                    <th style="position: sticky; top: 0;">Miles</th>
+                    <th style="position: sticky; top: 0;">Price</th>
+                    <th style="position: sticky; top: 0;">Details</th>
+                    <th style="position: sticky; top: 0;">Date Added</th>
+                    <th style="position: sticky; top: 0;">Service Type</th>
+                    <th style="position: sticky; top: 0;"></th>
+                </tr>
+                @foreach (var item in Model.CarServices)
+                {
+                    <tr>
+                        <td>@item.Miles</td>
+                        <td>@item.Price</td>
+                        <td>@item.Details</td>
+                        <td>@item.DateAdded</td>
+                        <td>@item.ServiceType</td>
+                        <td>
+                            @if (item.DateAdded == DateTime.Today)
+                            {@Html.ActionLink("Delete", "DeleteService", item, new { @class = "btn btn-danger" })}
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+        @Html.ActionLink("Show Less", "ServiceForm", Model.Car)
     </div>
 }
 

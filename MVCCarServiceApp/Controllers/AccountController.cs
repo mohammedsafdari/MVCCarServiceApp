@@ -358,7 +358,8 @@ namespace MVCCarServiceApp.Controllers
                     // If the user does not have an account, then prompt the user to create an account
                     ViewBag.ReturnUrl = returnUrl;
                     ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
-                    return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
+                    var user = new ApplicationUser { Email = loginInfo.Email };
+                    return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { User = user });
             }
         }
 
@@ -382,7 +383,15 @@ namespace MVCCarServiceApp.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser
+                {
+                    UserName = model.User.Email,
+                    Email = model.User.Email,
+                    FirstName = model.User.FirstName,
+                    LastName = model.User.LastName,
+                    City = model.User.City,
+                    PhoneNumber = model.User.PhoneNumber
+                };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {

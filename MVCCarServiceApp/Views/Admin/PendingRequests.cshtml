@@ -5,6 +5,12 @@
 
 <h2>Pending Requests</h2>
 
+@if(!Model.Any())
+{
+    <div class="jumbotron" style="margin-top: 5px; margin-bottom:15px">No Pending Requests</div>
+}
+
+else { 
 <div class="jumbotron" style="margin-top: 5px; margin-bottom:15px">
 	<table class="table table-responsive table-hover table-striped">
 		<tr>
@@ -23,9 +29,10 @@
 			<td>@item.Details</td>
 			<td>@item.DateAdded</td>
 			<td>@item.ServiceType</td>
-			<td>@Html.ActionLink("Approve", "", "", new { @class = "btn btn-success" })
-				@Html.ActionLink("Reject", "", "", new { @class = "btn btn-danger" })</td>
+			<td>@Html.ActionLink("Approve", "ApproveRequest", item, new { @class = "btn btn-success" })
+				@Html.ActionLink("Reject", "RejectRequest", item, new { @class = "btn btn-danger" })</td>
 		</tr>
 		}
 	</table>
 </div>
+}

@@ -83,10 +83,10 @@ namespace MVCCarServiceApp.APIs
 		[HttpDelete] //Redundant
 		public IHttpActionResult DeleteService(int id)
 		{
-			var userInDb = _context.CarServices.Find(id);
-			if (userInDb == null)
+			var serviceInDb = _context.CarServices.Find(id);
+			if (serviceInDb == null)
 				NotFound();
-			_context.CarServices.Remove(userInDb);
+			_context.CarServices.Remove(serviceInDb);
 			_context.SaveChanges();
 
 			return Ok();

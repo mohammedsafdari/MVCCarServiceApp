@@ -3,16 +3,16 @@
     ViewBag.Title = "Customer List";
 }
 
-@section CustomerPage{
+@section css{
         <link href="@Url.Content("~/Content/CustomerBackground.css")" rel="stylesheet" />
     }
 
 <h1 class="text-center jumbotron" style=" font-family:'Agency FB'; font-size:xx-large; height:130px; margin-top:10px; margin-bottom:10px; vertical-align:middle "><strong><u>CUSTOMER LIST</u></strong></h1>
 <hr />
 
-<div id="div1">
+@*<div id="div1">
     @Html.ActionLink("Add New Customer", "CustomerForm", "Customer", Model.CheckInteger, new { @class = "btn btn-default" })
-</div>
+</div>*@
 
 @using (Html.BeginForm("Customers", "Customer", FormMethod.Get))
 {
@@ -54,35 +54,33 @@
 
     else
     {
-    <div id="div3" class="jumbotron" style="margin-top: 5px; margin-bottom:15px;">
+<div id="div3" class="jumbotron" style="margin-top: 5px; margin-bottom:15px;">
+    <div style="overflow-y: auto; height: 200px;">
         <table class="table table-responsive table-hover table-striped">
             <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Mobile No.</th>
-                <th>Email Id</th>
-                <th></th>
+                <th style="position: sticky; top: 0;">First Name</th>
+                <th style="position: sticky; top: 0;">Last Name</th>
+                <th style="position: sticky; top: 0;">Mobile No.</th>
+                <th style="position: sticky; top: 0;">Email Id</th>
+                <th style="position: sticky; top: 0;"></th>
             </tr>
-        </table>
-        <div style="overflow:scroll; height:170px">
-            <table class="table table-responsive table-hover table-striped">
             @foreach (var item in Model.Users)
             {
-            <tr>
-                <td>@item.FirstName</td>
-                <td>@item.LastName</td>
-                <td>@item.PhoneNumber</td>
-                <td>@item.Email</td>
-                <td>
-                    @Html.ActionLink("View Cars", "ViewCars", "Car", item, new { @class = "btn btn-success" })
-                    @Html.ActionLink("Edit", "CustEditForm", item, new { @class = "btn btn-primary" })
-                    @Html.ActionLink("Delete", "DeleteCustomer", item, new { @class = "btn btn-danger" })
-                </td>
-            </tr>
+                <tr>
+                    <td>@item.FirstName</td>
+                    <td>@item.LastName</td>
+                    <td>@item.PhoneNumber</td>
+                    <td>@item.Email</td>
+                    <td>
+                        @Html.ActionLink("View Cars", "ViewCars", "Car", item, new { @class = "btn btn-success" })
+                        @*@Html.ActionLink("Edit", "CustEditForm", item, new { @class = "btn btn-primary" })*@
+                        @Html.ActionLink("Delete", "DeleteCustomer", item, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
             }
-            </table>
-        </div>
+        </table>
     </div>
+</div>
     }
 
 

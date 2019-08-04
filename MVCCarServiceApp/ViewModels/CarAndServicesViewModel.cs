@@ -13,5 +13,6 @@ namespace MVCCarServiceApp.ViewModels
         public IEnumerable<CarService> CarServices { get; set; }
         public int CheckInteger { get; set; }
         public IEnumerable<ServiceType> ServiceTypes {get; set;}
+        public IEnumerable<ServiceRequest> ServiceRequests { get; set; }
     }
 }

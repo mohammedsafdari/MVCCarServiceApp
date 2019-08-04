@@ -29,7 +29,7 @@ namespace MVCCarServiceApp.APIs
         }
 
         // GET: api/APIServiceType/5
-        public IHttpActionResult Get(int id)
+        public IHttpActionResult Get(int? id)
         {
             return Ok(_context.ServiceTypes.Find(id));
         }
@@ -49,9 +49,15 @@ namespace MVCCarServiceApp.APIs
         //}
 
         // DELETE: api/APIServiceType/5
-        public void Delete(int id)
+        public IHttpActionResult DeleteServiceType(int id)
         {
+            var typeInDb = _context.ServiceTypes.Find(id);
+            if (typeInDb == null)
+                NotFound();
+            _context.ServiceTypes.Remove(typeInDb);
+            _context.SaveChanges();
 
+            return Ok();
         }
     }
 }

@@ -138,7 +138,7 @@ namespace MVCCarServiceApp.Controllers
 			HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync($"APICustomer?id={car.UserId}&type=find").Result;
 			var user = response.Content.ReadAsAsync<ApplicationUser>().Result;
 
-			HttpResponseMessage response1 = GlobalVariables.WebApiClient.DeleteAsync($"APICar/"+car.Id).Result;
+			HttpResponseMessage response1 = GlobalVariables.WebApiClient.DeleteAsync("APICar/"+car.Id).Result;
 
 			return RedirectToAction("ViewCars", user);
         }
