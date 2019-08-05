@@ -33,26 +33,26 @@
             <td class="text-center"><strong>Miles</strong></td>
             <td>
                 @Html.TextBoxFor(m => m.ServiceRequest.Miles, new { @class = "form-control" })<br />
-                @*@Html.ValidationMessageFor(m => m.VIN)*@
+                @Html.ValidationMessageFor(m => m.ServiceRequest.Miles)
             </td>
             <td class="text-center"><strong>Details</strong></td>
             <td>
                 @Html.TextBoxFor(m => m.ServiceRequest.Details, new { @class = "form-control" })<br />
-                @*@Html.ValidationMessageFor(m => m.Make)*@
+                @Html.ValidationMessageFor(m => m.ServiceRequest.Details)
             </td>
         </tr>
         <tr>
             <td class="text-center"><strong>Price</strong></td>
             <td>
                 @Html.TextBoxFor(m => m.ServiceRequest.Price, new { @class = "form-control" })<br />
-                @*@Html.ValidationMessageFor(m => m.Model)*@
+                @Html.ValidationMessageFor(m => m.ServiceRequest.Price)
             </td>
             <td class="text-center"><strong>Service Type</strong></td>
             <td>
                 @Html.DropDownListFor(m => m.ServiceRequest.ServiceType,
                           new SelectList(Model.ServiceTypes, "ServiceName", "ServiceName"),
                           "Select Service Type", new { @class = "form-control" })<br />
-                @*@Html.ValidationMessageFor(m => m.Style)*@
+                @Html.ValidationMessageFor(m => m.ServiceRequest.ServiceType)
             </td>
         </tr>
     </table>
@@ -60,8 +60,10 @@
     @Html.HiddenFor(c => c.Car.VIN)
     @Html.HiddenFor(c => c.Car.Color)
     @Html.HiddenFor(c => c.Car.Model)
+    @Html.HiddenFor(c=>c.Car.Make)
+    @Html.HiddenFor(c=>c.Car.Style)
     <button class="btn btn-primary" type="submit">Add Service</button>
-    @Html.ValidationSummary("", new { @class = "text-danger" })
+    @*@Html.ValidationSummary("", new { @class = "text-danger" })*@
 }
 
 <hr />

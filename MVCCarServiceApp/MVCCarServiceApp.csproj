@@ -312,7 +312,7 @@
     <Content Include="Content\FormValidation.css" />
     <Content Include="Content\HomeIndex.css" />
     <Content Include="Content\HomeIndexBack.css" />
-    <Content Include="Content\navbarDropdown.css" />
+    <Content Include="Content\navDrop.css" />
     <Content Include="Content\RegFormBackground.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

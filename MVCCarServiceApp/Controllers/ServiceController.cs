@@ -107,10 +107,14 @@ namespace MVCCarServiceApp.Controllers
 				HttpResponseMessage response2 = GlobalVariables.WebApiClient.GetAsync($"APICar?id={viewModel.Car.Id}&type=find").Result;
 				var car = response2.Content.ReadAsAsync<Car>().Result;
 
-				viewModel.CheckInteger = i;
+                HttpResponseMessage response3 = GlobalVariables.WebApiClient.GetAsync("APIServiceRequest").Result;
+                var requests = response3.Content.ReadAsAsync<IEnumerable<ServiceRequest>>().Result;
+
+                viewModel.CheckInteger = i;
                 viewModel.Car = car;
                 viewModel.CarServices = serviceList;
                 viewModel.ServiceTypes = serviceTypes;
+                viewModel.ServiceRequests = requests;
                 return View("ServiceForm", viewModel);
             }
         }
