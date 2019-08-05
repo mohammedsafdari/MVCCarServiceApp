@@ -34,9 +34,10 @@
     </tr>
 </table>
 
-@if (!ViewContext.HttpContext.User.IsInRole(MVCCarServiceApp.Models.Roles.Admin)){
-@Html.ActionLink("Edit Details", "CustEditForm", "Customer", Model.User, new { @class = "btn btn-primary", style="margin-right:2px" })
-@Html.ActionLink("Add New Car", "CarForm", "Car", Model.User, new { @class = "btn btn-default" })
+@if (!ViewContext.HttpContext.User.IsInRole(MVCCarServiceApp.Models.Roles.Admin))
+{
+    @Html.ActionLink(" Edit Details", "CustEditForm", "Customer", Model.User, new { @class = "btn btn-primary fas fa-edit", style = "margin-right:2px" })
+    @Html.ActionLink(" Add New Car", "CarForm", "Car", Model.User, new { @class = "btn btn-default fas fa-plus-square" })
 }
 
 <hr />
@@ -68,12 +69,12 @@ else
                         <td>@item.Model</td>
                         <td>@item.Style</td>
                         <td>@item.Color</td>
-                        <td>@Html.ActionLink("Services", "ServiceForm", "Service", item, new { @class = "btn btn-success" })</td>
+                        <td>@Html.ActionLink(" Services", "ServiceForm", "Service", item, new { @class = "btn btn-success fas fa-plus-square" })</td>
                         <td>
                             @if (!ViewContext.HttpContext.User.IsInRole(MVCCarServiceApp.Models.Roles.Admin))
                             {
-                                @Html.ActionLink("Edit", "CarEditForm", item, new { @class = "btn btn-primary", style="margin-right:2px" })
-                                @Html.ActionLink("Delete", "DeleteCar", item, new { @class = "btn btn-danger" })
+                                @Html.ActionLink(" Edit", "CarEditForm", item, new { @class = "btn btn-primary fas fa-edit", style = "margin-right:2px" })
+                                @Html.ActionLink(" Delete", "DeleteCar", item, new { @class = "btn btn-danger fas fa-trash-alt" })
                             }
                         </td>
                     </tr>
