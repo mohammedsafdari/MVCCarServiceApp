@@ -24,24 +24,24 @@ namespace MVCCarServiceApp.Controllers
         //    return View(viewModel);
         //}
         
-        public ActionResult CustomerForm()
-        {
-            return View();
-        }
+    //    public ActionResult CustomerForm()
+    //    {
+    //        return View();
+    //    }
 
-        public ActionResult AddCustomer(ApplicationUser user)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View("CustomerForm", user);
-            }
-            else
-            {
-				HttpResponseMessage response = GlobalVariables.WebApiClient.PostAsJsonAsync("APICustomer", user).Result;
+    //    public ActionResult AddCustomer(ApplicationUser user)
+    //    {
+    //        if (!ModelState.IsValid)
+    //        {
+    //            return View("CustomerForm", user);
+    //        }
+    //        else
+    //        {
+				//HttpResponseMessage response = GlobalVariables.WebApiClient.PostAsJsonAsync("APICustomer", user).Result;
 
-				return RedirectToAction("Customers");
-            }
-        }
+				//return RedirectToAction("Customers");
+    //        }
+    //    }
 
         public ActionResult CustEditForm(ApplicationUser user)
         {

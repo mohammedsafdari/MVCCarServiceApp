@@ -12,42 +12,46 @@
             <td class="text-center"><strong>First Name</strong></td>
             <td>
                 @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })<br />
-                @*@Html.ValidationMessageFor(m => m.FirstName)*@
+                @Html.ValidationMessageFor(m => m.FirstName)
             </td>
         </tr>
         <tr>
             <td class="text-center"><strong>Last Name</strong></td>
             <td>
                 @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })<br />
-                @*@Html.ValidationMessageFor(m => m.LastName)*@
+                @Html.ValidationMessageFor(m => m.LastName)
             </td>
         </tr>
         <tr>
             <td class="text-center"><strong>Email Id</strong></td>
             <td>
                 @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })<br />
-                @*@Html.ValidationMessageFor(m => m.EmailId)*@
+                @Html.ValidationMessageFor(m => m.Email)
             </td>
         </tr>
         <tr>
             <td class="text-center"><strong>Mobile No.</strong></td>
             <td>
                 @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })<br />
-                @*@Html.ValidationMessageFor(m => m.MobileNo)*@
+                @Html.ValidationMessageFor(m => m.PhoneNumber)
             </td>
         </tr>
         <tr>
             <td class="text-center"><strong>City</strong></td>
             <td>
                 @Html.TextBoxFor(m => m.City, new { @class = "form-control" })<br />
-                @*@Html.ValidationMessageFor(m => m.City)*@
+                @Html.ValidationMessageFor(m => m.City)
             </td>
         </tr>
 
 
     </table>
-    @Html.HiddenFor(m=>m.Id)
+    @Html.HiddenFor(m => m.Id)
     <button class="btn btn-primary" type="submit">Update</button>
-    <hr/>
-    @Html.ValidationSummary("",new { @class = "text-danger" })
+    <hr />
+    @*@Html.ValidationSummary("", new { @class = "text-danger" })*@
+}
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
 }

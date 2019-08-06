@@ -22,11 +22,12 @@
     </tr>
 </table>
 
-
-<hr />
+@if (!ViewContext.HttpContext.User.IsInRole(MVCCarServiceApp.Models.Roles.Admin))
+{ 
+    <hr />
 <h2>Add Service</h2>
 
-@using (Html.BeginForm("AddService", "Service"))
+using (Html.BeginForm("AddService", "Service"))
 {
     <table class="table form-group">
         <tr>
@@ -60,8 +61,8 @@
     @Html.HiddenFor(c => c.Car.VIN)
     @Html.HiddenFor(c => c.Car.Color)
     @Html.HiddenFor(c => c.Car.Model)
-    @Html.HiddenFor(c=>c.Car.Make)
-    @Html.HiddenFor(c=>c.Car.Style)
+    @Html.HiddenFor(c => c.Car.Make)
+    @Html.HiddenFor(c => c.Car.Style)
     <button class="btn btn-primary" type="submit">Add Service</button>
     @*@Html.ValidationSummary("", new { @class = "text-danger" })*@
 }
@@ -70,7 +71,7 @@
 <h2>Pending Requests</h2>
 <hr />
 
-@if (!Model.ServiceRequests.Any())
+if (!Model.ServiceRequests.Any())
 {<h4>No Pending Requests</h4> }
 
 else
@@ -101,6 +102,7 @@ else
         </table>
     </div>
 }
+    }
 
 <hr />
 <h2>Past Service Records</h2>
@@ -131,8 +133,11 @@ else
                         <td>@item.DateAdded</td>
                         <td>@item.ServiceType</td>
                         <td>
-                            @if (item.DateAdded == DateTime.Today)
-                            {@Html.ActionLink("Delete", "DeleteService", item, new { @class = "btn btn-danger" })}
+                            @if (!ViewContext.HttpContext.User.IsInRole(MVCCarServiceApp.Models.Roles.Admin))
+                            {
+                                if (item.DateAdded == DateTime.Today)
+                                {@Html.ActionLink("Delete", "DeleteService", item, new { @class = "btn btn-danger" })}
+                            }
                         </td>
                     </tr>
                 }

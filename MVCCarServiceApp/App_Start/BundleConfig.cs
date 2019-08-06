@@ -30,7 +30,8 @@ namespace MVCCarServiceApp
                       "~/Content/FormValidation.css",
                       "~/Content/HomeIndex.css",
                       "~/Content/navDrop.css",
-                      "~/Content/serviceDrop.css"));
+                      "~/Content/serviceDrop.css",
+                      "~/Content/beat.css"));
         }
     }
 }

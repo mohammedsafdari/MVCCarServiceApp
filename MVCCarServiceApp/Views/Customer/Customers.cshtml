@@ -1,86 +1,96 @@
-﻿@model MVCCarServiceApp.ViewModels.CustAndCustViewModel
+﻿@using Microsoft.AspNet.Identity
+@model MVCCarServiceApp.ViewModels.CustAndCustViewModel
 @{
     ViewBag.Title = "Customer List";
 }
 
 @section css{
-        <link href="@Url.Content("~/Content/CustomerBackground.css")" rel="stylesheet" />
-    }
+    <link href="@Url.Content("~/Content/CustomerBackground.css")" rel="stylesheet" />
+}
 
 <h1 class="text-center jumbotron" style=" font-family:'Agency FB'; font-size:xx-large; height:130px; margin-top:10px; margin-bottom:10px; vertical-align:middle "><strong><u>CUSTOMER LIST</u></strong></h1>
 <hr />
 
 @*<div id="div1">
-    @Html.ActionLink("Add New Customer", "CustomerForm", "Customer", Model.CheckInteger, new { @class = "btn btn-default" })
-</div>*@
+        @Html.ActionLink("Add New Customer", "CustomerForm", "Customer", Model.CheckInteger, new { @class = "btn btn-default" })
+    </div>*@
 
 @using (Html.BeginForm("Customers", "Customer", FormMethod.Get))
 {
-<div id="div2">
-    <table id="tableRadio">
-        <tr id="trDiv2" style="margin-right:10px">
-            <td class="tdCheckbox">@Html.RadioButton("option", "FirstName")First Name</td>
-            <td class="tdCheckbox">@Html.RadioButton("option", "Email")Email Id</td>
-            <td class="tdCheckbox">@Html.RadioButton("option", "Mobile")Mobile No.</td>
-        </tr>
-    </table>
+    <div id="div2">
+        <table id="tableRadio">
+            <tr id="trDiv2" style="margin-right:10px">
+                <td class="tdCheckbox">@Html.RadioButton("option", "FirstName")First Name</td>
+                <td class="tdCheckbox">@Html.RadioButton("option", "Email")Email Id</td>
+                <td class="tdCheckbox">@Html.RadioButton("option", "Mobile")Mobile No.</td>
+            </tr>
+        </table>
 
-    @Html.TextBox("search", "", new { size = "28" })
+        @Html.TextBox("search", "", new { size = "28" })
 
-    <button id="btnDiv2" class="btn btn-primary" type="submit">Search</button><br />
-    @if (Model.CheckInteger == 1)
-    {
-        <span class="text-danger">Search Field Cannot be Empty</span>
-    }
-    @if (Model.CheckInteger == 2)
-    {
-        <span class="text-danger">Invalid input type, enter a Mobile no.</span>
-    }
-    @if (Model.CheckInteger == 3)
-    {
-        <span class="text-danger">Invalid input type, enter a Email Id</span>
-    }
-    @if (Model.CheckInteger == 4)
-    {
-        <span class="text-danger">Invalid input type, enter a Name</span>
-    }
-</div>
+        <button id="btnDiv2" class="btn btn-primary" type="submit">Search</button><br />
+        @if (Model.CheckInteger == 1)
+        {
+            <span class="text-danger">Search Field Cannot be Empty</span>
+        }
+        @if (Model.CheckInteger == 2)
+        {
+            <span class="text-danger">Invalid input type, enter a Mobile no.</span>
+        }
+        @if (Model.CheckInteger == 3)
+        {
+            <span class="text-danger">Invalid input type, enter a Email Id</span>
+        }
+        @if (Model.CheckInteger == 4)
+        {
+            <span class="text-danger">Invalid input type, enter a Name</span>
+        }
+    </div>
 }
 
-    @if (!Model.Users.Any())
-    {<div id="div3" class="jumbotron" style="margin-top: 5px; margin-bottom:15px">
-    <h4>No Customers Found</h4> 
+@if (!Model.Users.Any())
+{<div id="div3" class="jumbotron" style="margin-top: 5px; margin-bottom:15px">
+        <h4>No Customers Found</h4>
     </div>}
 
-    else
-    {
-<div id="div3" class="jumbotron" style="margin-top: 5px; margin-bottom:15px;">
-    <div style="overflow-y: auto; height: 200px;">
-        <table class="table table-responsive table-hover table-striped">
-            <tr>
-                <th style="position: sticky; top: 0;">First Name</th>
-                <th style="position: sticky; top: 0;">Last Name</th>
-                <th style="position: sticky; top: 0;">Mobile No.</th>
-                <th style="position: sticky; top: 0;">Email Id</th>
-                <th style="position: sticky; top: 0;"></th>
-            </tr>
-            @foreach (var item in Model.Users)
-            {
+else
+{
+    <div id="div3" class="jumbotron" style="margin-top: 5px; margin-bottom:15px;">
+        <div style="overflow-y: auto; height: 200px;">
+            <table class="table table-responsive table-hover table-striped">
                 <tr>
-                    <td>@item.FirstName</td>
-                    <td>@item.LastName</td>
-                    <td>@item.PhoneNumber</td>
-                    <td>@item.Email</td>
-                    <td>
-                        @Html.ActionLink("View Cars", "ViewCars", "Car", item, new { @class = "btn btn-success" })
-                        @*@Html.ActionLink("Edit", "CustEditForm", item, new { @class = "btn btn-primary" })*@
-                        @Html.ActionLink("Delete", "DeleteCustomer", item, new { @class = "btn btn-danger" })
-                    </td>
+                    <th style="position: sticky; top: 0;">First Name</th>
+                    <th style="position: sticky; top: 0;">Last Name</th>
+                    <th style="position: sticky; top: 0;">Mobile No.</th>
+                    <th style="position: sticky; top: 0;">Email Id</th>
+                    <th class="text-center" style="position: sticky; top: 0;">
+                        <i class="fa fa-car fa-rotate-270"></i>
+                        <i class="fa fa-car fa-spin"></i>
+                        <i class="fa fa-car"></i>
+                        <i class="fa fa-car fa-spin"></i>
+                        <i class="fa fa-car fa-rotate-90"></i>
+                    </th>
                 </tr>
-            }
-        </table>
+                @foreach (var item in Model.Users)
+                {
+                    if (User.Identity.GetUserId() != item.Id)
+                    {
+                        <tr>
+                            <td>@item.FirstName</td>
+                            <td>@item.LastName</td>
+                            <td>@item.PhoneNumber</td>
+                            <td>@item.Email</td>
+                            <td>
+                                @Html.ActionLink("View Cars", "ViewCars", "Car", item, new { @class = "btn btn-success" })
+                                @*@Html.ActionLink("Edit", "CustEditForm", item, new { @class = "btn btn-primary" })*@
+                                @Html.ActionLink(" Delete", "DeleteCustomer", item, new { @class = "btn btn-danger fas fa-trash-alt" })
+                            </td>
+                        </tr>
+                    }
+                }
+            </table>
+        </div>
     </div>
-</div>
-    }
+}
 
 
