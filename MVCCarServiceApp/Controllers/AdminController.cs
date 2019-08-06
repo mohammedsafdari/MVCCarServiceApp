@@ -73,10 +73,12 @@ namespace MVCCarServiceApp.Controllers
 
         public ActionResult PendingRequests()
 		{
-			HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("APIServiceRequest").Result;
-			var requests = response.Content.ReadAsAsync<IEnumerable<ServiceRequest>>().Result;
+            HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("APIServiceRequest").Result;
+            var requests = response.Content.ReadAsAsync<IEnumerable<ServiceRequest>>().Result;
 
-			return View(requests);
+            //var requests = _context.ServiceRequests.ToList();
+
+            return View(requests);
 		}
 
         public ActionResult ApproveRequest(ServiceRequest request)

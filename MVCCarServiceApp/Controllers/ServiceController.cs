@@ -29,11 +29,10 @@ namespace MVCCarServiceApp.Controllers
                 }
             }
 
-
             HttpResponseMessage response1 = GlobalVariables.WebApiClient.GetAsync("APIServiceType").Result;
             var serviceTypes = response1.Content.ReadAsAsync<IEnumerable<ServiceType>>().Result;
 
-            HttpResponseMessage response2 = GlobalVariables.WebApiClient.GetAsync("APIServiceRequest").Result;
+            HttpResponseMessage response2 = GlobalVariables.WebApiClient.GetAsync($"APIServiceRequest?id={car.Id}&type=whereDesc").Result;
             var requests = response2.Content.ReadAsAsync<IEnumerable<ServiceRequest>>().Result;
 
             var viewModel = new CarAndServicesViewModel
@@ -56,7 +55,7 @@ namespace MVCCarServiceApp.Controllers
             HttpResponseMessage response1 = GlobalVariables.WebApiClient.GetAsync("APIServiceType").Result;
             var serviceTypes = response1.Content.ReadAsAsync<IEnumerable<ServiceType>>().Result;
 
-            HttpResponseMessage response2 = GlobalVariables.WebApiClient.GetAsync("APIServiceRequest").Result;
+            HttpResponseMessage response2 = GlobalVariables.WebApiClient.GetAsync($"APIServiceRequest?id={car.Id}&type=whereDesc").Result;
             var requests = response2.Content.ReadAsAsync<IEnumerable<ServiceRequest>>().Result;
 
             var viewModel = new CarAndServicesViewModel

@@ -11,41 +11,60 @@
         <tr>
             <td class="text-center"><strong>VIN</strong></td>
             <td>
-                @Html.TextBoxFor(m=>m.Car.VIN, new { @class = "form-control" })<br />
-                @*@Html.ValidationMessageFor(m => m.VIN)*@
+                @Html.TextBoxFor(m => m.Car.VIN, new { @class = "form-control" })
             </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(m => m.Car.VIN, "", new { @class = "text-danger" })</td>
         </tr>
         <tr>
             <td class="text-center"><strong>Make</strong></td>
             <td>
-                @Html.DropDownListFor(m => m.Car.Make, new SelectList(Model.CarMakes, "Make", "Make"), "Select Car Make", new { @class = "form-control" })<br />
-                @*@Html.ValidationMessageFor(m => m.Make)*@
+                @Html.DropDownListFor(m => m.Car.Make, new SelectList(Model.CarMakes, "Make", "Make"), "Select Car Make", new { @class = "form-control" })
             </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(m => m.Car.Make, "", new { @class = "text-danger" })</td>
         </tr>
         <tr>
             <td class="text-center"><strong>Model</strong></td>
             <td>
-                @Html.TextBoxFor(m => m.Car.Model, new { @class = "form-control" })<br />
-                @*@Html.ValidationMessageFor(m => m.Model)*@
+                @Html.TextBoxFor(m => m.Car.Model, new { @class = "form-control" })
             </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(m => m.Car.Model, "", new { @class = "text-danger" })</td>
         </tr>
         <tr>
             <td class="text-center"><strong>Style</strong></td>
             <td>
-                @Html.DropDownListFor(m => m.Car.Style, new SelectList(Model.CarStyles, "Style", "Style"), "Select Car Style", new { @class = "form-control" })<br />
-                @*@Html.ValidationMessageFor(m => m.Style)*@
+                @Html.DropDownListFor(m => m.Car.Style, new SelectList(Model.CarStyles, "Style", "Style"), "Select Car Style", new { @class = "form-control" })
             </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(m => m.Car.Style, "", new { @class = "text-danger" })</td>
         </tr>
         <tr>
             <td class="text-center"><strong>Color</strong></td>
             <td>
-                @Html.TextBoxFor(m => m.Car.Color, new { @class = "form-control" })<br />
-                @*@Html.ValidationMessageFor(m => m.Color)*@
+                @Html.TextBoxFor(m => m.Car.Color, new { @class = "form-control" })
             </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ValidationMessageFor(m => m.Car.Color, "", new { @class = "text-danger" })</td>
         </tr>
     </table>
     @Html.HiddenFor(c => c.Car.Id)
     @Html.HiddenFor(c => c.Car.UserId)
     <button class="btn btn-primary" type="submit">Update</button>
-    @Html.ValidationSummary("", new { @class = "text-danger" })
+    @*@Html.ValidationSummary("", new { @class = "text-danger" })*@
+}
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
 }

@@ -23,86 +23,102 @@
 </table>
 
 @if (!ViewContext.HttpContext.User.IsInRole(MVCCarServiceApp.Models.Roles.Admin))
-{ 
+{
     <hr />
-<h2>Add Service</h2>
+    <h2>Add Service</h2>
 
-using (Html.BeginForm("AddService", "Service"))
-{
-    <table class="table form-group">
-        <tr>
-            <td class="text-center"><strong>Miles</strong></td>
-            <td>
-                @Html.TextBoxFor(m => m.ServiceRequest.Miles, new { @class = "form-control" })<br />
-                @Html.ValidationMessageFor(m => m.ServiceRequest.Miles)
-            </td>
-            <td class="text-center"><strong>Details</strong></td>
-            <td>
-                @Html.TextBoxFor(m => m.ServiceRequest.Details, new { @class = "form-control" })<br />
-                @Html.ValidationMessageFor(m => m.ServiceRequest.Details)
-            </td>
-        </tr>
-        <tr>
-            <td class="text-center"><strong>Price</strong></td>
-            <td>
-                @Html.TextBoxFor(m => m.ServiceRequest.Price, new { @class = "form-control" })<br />
-                @Html.ValidationMessageFor(m => m.ServiceRequest.Price)
-            </td>
-            <td class="text-center"><strong>Service Type</strong></td>
-            <td>
-                @Html.DropDownListFor(m => m.ServiceRequest.ServiceType,
-                          new SelectList(Model.ServiceTypes, "ServiceName", "ServiceName"),
-                          "Select Service Type", new { @class = "form-control" })<br />
-                @Html.ValidationMessageFor(m => m.ServiceRequest.ServiceType)
-            </td>
-        </tr>
-    </table>
-    @Html.HiddenFor(c => c.Car.Id)
-    @Html.HiddenFor(c => c.Car.VIN)
-    @Html.HiddenFor(c => c.Car.Color)
-    @Html.HiddenFor(c => c.Car.Model)
-    @Html.HiddenFor(c => c.Car.Make)
-    @Html.HiddenFor(c => c.Car.Style)
-    <button class="btn btn-primary" type="submit">Add Service</button>
-    @*@Html.ValidationSummary("", new { @class = "text-danger" })*@
-}
-
-<hr />
-<h2>Pending Requests</h2>
-<hr />
-
-if (!Model.ServiceRequests.Any())
-{<h4>No Pending Requests</h4> }
-
-else
-{
-    <div class="jumbotron" style="margin-top: 5px; margin-bottom:15px">
-        <table class="table table-responsive table-hover table-striped">
+    using (Html.BeginForm("AddService", "Service"))
+    {
+        <table class="table form-group">
             <tr>
-                <th>Miles</th>
-                <th>Price</th>
-                <th>Details</th>
-                <th>Date Added</th>
-                <th>Service Type</th>
-                <th></th>
+                <td class="text-center"><strong>Miles</strong></td>
+                <td>
+                    @Html.TextBoxFor(m => m.ServiceRequest.Miles, new { @class = "form-control" })
+                </td>
+                <td class="text-center"><strong>Details</strong></td>
+                <td>
+                    @Html.TextBoxFor(m => m.ServiceRequest.Details, new { @class = "form-control" })
+                </td>
             </tr>
-            @foreach (var item in Model.ServiceRequests)
-            {
-                <tr>
-                    <td>@item.Miles</td>
-                    <td>@item.Price</td>
-                    <td>@item.Details</td>
-                    <td>@item.DateAdded</td>
-                    <td>@item.ServiceType</td>
-                    <td>
-                        @Html.ActionLink("Delete", "DeleteServiceRequest", item, new { @class = "btn btn-danger" })
-                    </td>
-                </tr>
-            }
+            <tr>
+                <td></td>
+                <td>
+                    @Html.ValidationMessageFor(m => m.ServiceRequest.Miles, "", new { @class = "text-danger" })
+                </td>
+                <td></td>
+                <td>
+                    @Html.ValidationMessageFor(m => m.ServiceRequest.Details, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <td class="text-center"><strong>Price</strong></td>
+                <td>
+                    @Html.TextBoxFor(m => m.ServiceRequest.Price, new { @class = "form-control" })
+                </td>
+                <td class="text-center"><strong>Service Type</strong></td>
+                <td>
+                    @Html.DropDownListFor(m => m.ServiceRequest.ServiceType,
+            new SelectList(Model.ServiceTypes, "ServiceName", "ServiceName"),
+            "Select Service Type", new { @class = "form-control" })
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    @Html.ValidationMessageFor(m => m.ServiceRequest.Price, "", new { @class = "text-danger" })
+                </td>
+                <td></td>
+                <td>
+                    @Html.ValidationMessageFor(m => m.ServiceRequest.ServiceType, "", new { @class = "text-danger" })
+                </td>
+            </tr>
         </table>
-    </div>
-}
+        @Html.HiddenFor(c => c.Car.Id)
+        @Html.HiddenFor(c => c.Car.VIN)
+        @Html.HiddenFor(c => c.Car.Color)
+        @Html.HiddenFor(c => c.Car.Model)
+        @Html.HiddenFor(c => c.Car.Make)
+        @Html.HiddenFor(c => c.Car.Style)
+        <button class="btn btn-primary" type="submit">Add Service</button>
     }
+
+
+    <hr />
+    <h2>Pending Requests</h2>
+    <hr />
+
+    if (!Model.ServiceRequests.Any())
+    {<h4>No Pending Requests</h4> }
+
+    else
+    {
+        <div class="jumbotron" style="margin-top: 5px; margin-bottom:15px">
+            <table class="table table-responsive table-hover table-striped">
+                <tr>
+                    <th>Miles</th>
+                    <th>Price</th>
+                    <th>Details</th>
+                    <th>Date Added</th>
+                    <th>Service Type</th>
+                    <th></th>
+                </tr>
+                @foreach (var item in Model.ServiceRequests)
+                {
+                    <tr>
+                        <td>@item.Miles</td>
+                        <td>@item.Price</td>
+                        <td>@item.Details</td>
+                        <td>@item.DateAdded</td>
+                        <td>@item.ServiceType</td>
+                        <td>
+                            @Html.ActionLink("Delete", "DeleteServiceRequest", item, new { @class = "btn btn-danger" })
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    }
+}
 
 <hr />
 <h2>Past Service Records</h2>
@@ -113,37 +129,43 @@ else
 
 else
 {
-    <div class="jumbotron" style="margin-top: 5px; margin-bottom:15px">
-        <div style="overflow-y: auto; height: 270px;">
-            <table class="table table-responsive table-hover table-striped">
-                <tr>
-                    <th style="position: sticky; top: 0;">Miles</th>
-                    <th style="position: sticky; top: 0;">Price</th>
-                    <th style="position: sticky; top: 0;">Details</th>
-                    <th style="position: sticky; top: 0;">Date Added</th>
-                    <th style="position: sticky; top: 0;">Service Type</th>
-                    <th style="position: sticky; top: 0;"></th>
-                </tr>
-                @foreach (var item in Model.CarServices)
-                {
-                    <tr>
-                        <td>@item.Miles</td>
-                        <td>@item.Price</td>
-                        <td>@item.Details</td>
-                        <td>@item.DateAdded</td>
-                        <td>@item.ServiceType</td>
-                        <td>
-                            @if (!ViewContext.HttpContext.User.IsInRole(MVCCarServiceApp.Models.Roles.Admin))
-                            {
-                                if (item.DateAdded == DateTime.Today)
-                                {@Html.ActionLink("Delete", "DeleteService", item, new { @class = "btn btn-danger" })}
-                            }
-                        </td>
-                    </tr>
-                }
-            </table>
-        </div>
-        @Html.ActionLink("Show Less", "ServiceForm", Model.Car)
-    </div>
+<div class="jumbotron" style="margin-top: 5px; margin-bottom:15px">
+    <table class="table table-responsive table-hover table-striped">
+        <tr>
+            <th>Miles</th>
+            <th>Price</th>
+            <th>Details</th>
+            <th>Date Added</th>
+            <th>Service Type</th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model.CarServices)
+        {
+            <tr>
+                <td>@item.Miles</td>
+                <td>@item.Price</td>
+                <td>@item.Details</td>
+                <td>@item.DateAdded</td>
+                <td>@item.ServiceType</td>
+                <td>
+                    @if (!ViewContext.HttpContext.User.IsInRole(MVCCarServiceApp.Models.Roles.Admin))
+                    {
+                        if (item.DateAdded == DateTime.Today)
+                        {
+                            @Html.ActionLink("Delete", "DeleteService", item, new { @class = "btn btn-danger" })
+                        }
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+    @Html.ActionLink("Show Less", "ServiceForm", Model.Car)
+</div>
 }
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
 

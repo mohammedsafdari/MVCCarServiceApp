@@ -33,27 +33,43 @@
             <tr>
                 <td class="text-center"><strong>Miles</strong></td>
                 <td>
-                    @Html.TextBoxFor(m => m.ServiceRequest.Miles, new { @class = "form-control" })<br />
-                    @*@Html.ValidationMessageFor(m => m.CarService.Miles)*@
+                    @Html.TextBoxFor(m => m.ServiceRequest.Miles, new { @class = "form-control" })
                 </td>
                 <td class="text-center"><strong>Details</strong></td>
                 <td>
-                    @Html.TextBoxFor(m => m.ServiceRequest.Details, new { @class = "form-control" })<br />
-                    @*@Html.ValidationMessageFor(m => m.Make)*@
+                    @Html.TextBoxFor(m => m.ServiceRequest.Details, new { @class = "form-control" })
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    @Html.ValidationMessageFor(m => m.ServiceRequest.Miles, "", new { @class = "text-danger" })
+                </td>
+                <td></td>
+                <td>
+                    @Html.ValidationMessageFor(m => m.ServiceRequest.Details, "", new { @class = "text-danger" })
                 </td>
             </tr>
             <tr>
                 <td class="text-center"><strong>Price</strong></td>
                 <td>
-                    @Html.TextBoxFor(m => m.ServiceRequest.Price, new { @class = "form-control" })<br />
-                    @*@Html.ValidationMessageFor(m => m.Model)*@
+                    @Html.TextBoxFor(m => m.ServiceRequest.Price, new { @class = "form-control" })
                 </td>
                 <td class="text-center"><strong>Service Type</strong></td>
                 <td>
                     @Html.DropDownListFor(m => m.ServiceRequest.ServiceType,
             new SelectList(Model.ServiceTypes, "ServiceName", "ServiceName"),
-            "Select Service Type", new { @class = "form-control" })<br />
-                    @*@Html.ValidationMessageFor(m => m.Style)*@
+            "Select Service Type", new { @class = "form-control" })
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    @Html.ValidationMessageFor(m => m.ServiceRequest.Price, "", new { @class = "text-danger" })
+                </td>
+                <td></td>
+                <td>
+                    @Html.ValidationMessageFor(m => m.ServiceRequest.ServiceType, "", new { @class = "text-danger" })
                 </td>
             </tr>
         </table>
@@ -64,45 +80,45 @@
         @Html.HiddenFor(c => c.Car.Make)
         @Html.HiddenFor(c => c.Car.Style)
         <button class="btn btn-primary" type="submit">Add Service</button>
-        @Html.ValidationSummary("", new { @class = "text-danger" })
+        @*@Html.ValidationSummary("", new { @class = "text-danger" })*@
     }
 
 
-<hr />
-<h2>Pending Requests</h2>
-<hr />
+    <hr />
+    <h2>Pending Requests</h2>
+    <hr />
 
-if (!Model.ServiceRequests.Any())
-{<h4>No Pending Requests</h4> }
+    if (!Model.ServiceRequests.Any())
+    {<h4>No Pending Requests</h4> }
 
-else
-{
-    <div class="jumbotron" style="margin-top: 5px; margin-bottom:15px">
-        <table class="table table-responsive table-hover table-striped">
-            <tr>
-                <th>Miles</th>
-                <th>Price</th>
-                <th>Details</th>
-                <th>Date Added</th>
-                <th>Service Type</th>
-                <th></th>
-            </tr>
-            @foreach (var item in Model.ServiceRequests)
-            {
+    else
+    {
+        <div class="jumbotron" style="margin-top: 5px; margin-bottom:15px">
+            <table class="table table-responsive table-hover table-striped">
                 <tr>
-                    <td>@item.Miles</td>
-                    <td>@item.Price</td>
-                    <td>@item.Details</td>
-                    <td>@item.DateAdded</td>
-                    <td>@item.ServiceType</td>
-                    <td>
-                        @Html.ActionLink("Delete", "DeleteServiceRequest", item, new { @class = "btn btn-danger" })
-                    </td>
+                    <th>Miles</th>
+                    <th>Price</th>
+                    <th>Details</th>
+                    <th>Date Added</th>
+                    <th>Service Type</th>
+                    <th></th>
                 </tr>
-            }
-        </table>
-    </div>
-}
+                @foreach (var item in Model.ServiceRequests)
+                {
+                    <tr>
+                        <td>@item.Miles</td>
+                        <td>@item.Price</td>
+                        <td>@item.Details</td>
+                        <td>@item.DateAdded</td>
+                        <td>@item.ServiceType</td>
+                        <td>
+                            @Html.ActionLink("Delete", "DeleteServiceRequest", item, new { @class = "btn btn-danger" })
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    }
 }
 
 <hr />
@@ -149,5 +165,9 @@ else
             @Html.ActionLink("Show All", "AllServiceForm", Model.Car)
         }
     </div>
+}
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
 }
 
