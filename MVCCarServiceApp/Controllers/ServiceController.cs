@@ -11,6 +11,11 @@ namespace MVCCarServiceApp.Controllers
 {
     public class ServiceController : Controller
     {
+        ApplicationDbContext _context;
+        public ServiceController()
+        {
+            _context = new ApplicationDbContext();
+        }
         // GET: Service
         public ActionResult ServiceForm(Car car)
         {
@@ -73,7 +78,8 @@ namespace MVCCarServiceApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                viewModel.ServiceRequest.DateAdded = DateTime.Today;
+                var serviceType = _context.ServiceTypes.SingleOrDefault(c => c.ServiceName == viewModel.ServiceRequest.ServiceType);
+                viewModel.ServiceRequest.Price = serviceType.Price;
                 viewModel.ServiceRequest.CarId = viewModel.Car.Id;
 
 				HttpResponseMessage response2 = GlobalVariables.WebApiClient.GetAsync($"APICar?id={viewModel.Car.Id.ToString()}&type=find").Result;

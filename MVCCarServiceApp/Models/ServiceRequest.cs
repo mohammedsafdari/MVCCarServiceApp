@@ -19,10 +19,13 @@ namespace MVCCarServiceApp.Models
 		[Required(ErrorMessage = "Service type is Mandatory")]
 		public string ServiceType { get; set; }
 
+        [Required(ErrorMessage = "Service Date is Mandatory")]
 		[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}")]
 		public DateTime DateAdded { get; set; }
 
-		public Car Car { get; set; }
+        public string RejectionMessage { get; set; }
+
+        public Car Car { get; set; }
 		public int CarId { get; set; }
 	}
 }

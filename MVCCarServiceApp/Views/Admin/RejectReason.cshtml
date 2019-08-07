@@ -1,0 +1,15 @@
+﻿@model MVCCarServiceApp.Models.ServiceRequest
+@{
+    ViewBag.Title = "RejectReason";
+}
+
+<h2>Specify Reason for Rejection</h2>
+
+@using (Html.BeginForm("RejectRequest", "Admin"))
+{
+<div>
+    @Html.TextBoxFor(c => c.RejectionMessage, new { @class = "form-control" })
+    @Html.HiddenFor(c => c.Id)
+    <button type="submit" class="btn btn-default">Submit</button>
+</div>
+}

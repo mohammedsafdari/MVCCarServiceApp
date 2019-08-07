@@ -1,38 +1,46 @@
-﻿@model IEnumerable<MVCCarServiceApp.Models.ServiceRequest>
+﻿@model MVCCarServiceApp.ViewModels.CustomerCarServiceRequestViewModel
 @{
     ViewBag.Title = "PendingRequests";
 }
 
 <h2>Pending Requests</h2>
 
-@if(!Model.Any())
+@if(!Model.ServiceRequests.Any())
 {
     <div class="jumbotron" style="margin-top: 5px; margin-bottom:15px">No Pending Requests</div>
 }
 
 else { 
 <div class="jumbotron" style="margin-top: 5px; margin-bottom:15px">
-	<table class="table table-responsive table-hover table-striped">
-		<tr>
-			<th>Miles</th>
-			<th>Price</th>
-			<th>Details</th>
-			<th>Date Added</th>
-			<th>Service Type</th>
-			<th></th>
-		</tr>
-		@foreach (var item in Model)
-		{
-		<tr>
-			<td>@item.Miles</td>
-			<td>@item.Price</td>
-			<td>@item.Details</td>
-			<td>@item.DateAdded</td>
-			<td>@item.ServiceType</td>
-			<td>@Html.ActionLink("Approve", "ApproveRequest", item, new { @class = "btn btn-success" })
-				@Html.ActionLink("Reject", "RejectRequest", item, new { @class = "btn btn-danger" })</td>
-		</tr>
-		}
-	</table>
-</div>
-}
+    <div style="overflow-y: auto; height: 350px;">
+        @foreach (var item in Model.ServiceRequests)
+        {
+            if (item.RejectionMessage == null)
+            {
+            <div><h2 style="font-family:'Agency FB'"><u><b>Service Request for @item.Car.User.FirstName @item.Car.User.LastName's @item.Car.Make @item.Car.Model</b></u></h2></div>
+            <table class="table table-responsive table-hover table-striped">
+                <tr>
+                    <th>Miles</th>
+                    <th>Price</th>
+                    <th>Details</th>
+                    <th>Service Date</th>
+                    <th>Service Type</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td>@item.Miles</td>
+                    <td>@item.Price</td>
+                    <td>@item.Details</td>
+                    <td>@item.DateAdded</td>
+                    <td>@item.ServiceType</td>
+                    <td>
+                        @Html.ActionLink("Approve", "ApproveRequest", item, new { @class = "btn btn-success" })
+                        @Html.ActionLink("Reject", "RejectReason", item, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            </table>
+            }
+        }
+    </div>
+    </div>
+    }

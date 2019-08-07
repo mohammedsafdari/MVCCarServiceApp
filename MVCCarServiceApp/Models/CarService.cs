@@ -12,7 +12,6 @@ namespace MVCCarServiceApp.Models
 
         [Required(ErrorMessage = "Miles field Mandatory")]
         public int Miles { get; set; }
-        [Required(ErrorMessage = "Price is Mandatory")]
         public int Price { get; set; }
         [Required(ErrorMessage = "Details field Mandatory")]
         public string Details { get; set; }

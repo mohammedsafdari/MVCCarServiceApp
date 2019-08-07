@@ -51,9 +51,9 @@
                 </td>
             </tr>
             <tr>
-                <td class="text-center"><strong>Price</strong></td>
+                <td class="text-center"><strong>Service Date</strong></td>
                 <td>
-                    @Html.TextBoxFor(m => m.ServiceRequest.Price, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.ServiceRequest.DateAdded, new { @class = "form-control" })
                 </td>
                 <td class="text-center"><strong>Service Type</strong></td>
                 <td>
@@ -65,7 +65,7 @@
             <tr>
                 <td></td>
                 <td>
-                    @Html.ValidationMessageFor(m => m.ServiceRequest.Price, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(m => m.ServiceRequest.DateAdded, "", new { @class = "text-danger" })
                 </td>
                 <td></td>
                 <td>
@@ -104,6 +104,8 @@
                 </tr>
                 @foreach (var item in Model.ServiceRequests)
                 {
+                    if(item.RejectionMessage == null)
+                    { 
                     <tr>
                         <td>@item.Miles</td>
                         <td>@item.Price</td>
@@ -114,6 +116,24 @@
                             @Html.ActionLink("Delete", "DeleteServiceRequest", item, new { @class = "btn btn-danger" })
                         </td>
                     </tr>
+                    }
+                    else
+                    {
+                        <tr>
+                            <td>@item.Miles</td>
+                            <td>@item.Price</td>
+                            <td>@item.Details</td>
+                            <td>@item.DateAdded</td>
+                            <td>@item.ServiceType</td>
+                            <td>
+                                @Html.ActionLink("Ok", "DeleteServiceRequest", item, new { @class = "btn btn-primary" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Rejection Message</td>
+                            <td>@item.RejectionMessage</td>
+                        </tr>
+                    }
                 }
             </table>
         </div>

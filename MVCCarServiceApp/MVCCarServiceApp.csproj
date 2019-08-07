@@ -281,6 +281,34 @@
     <Compile Include="Migrations\201908021535407_addedServiceRequestModel.Designer.cs">
       <DependentUpon>201908021535407_addedServiceRequestModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908070553066_addedRejectionMessageToServiceRequestModel.cs" />
+    <Compile Include="Migrations\201908070553066_addedRejectionMessageToServiceRequestModel.Designer.cs">
+      <DependentUpon>201908070553066_addedRejectionMessageToServiceRequestModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908070558207_updatedServiceAndServiceRequestModels.cs" />
+    <Compile Include="Migrations\201908070558207_updatedServiceAndServiceRequestModels.Designer.cs">
+      <DependentUpon>201908070558207_updatedServiceAndServiceRequestModels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908070600077_updatedServiceAndServiceRequestModelsAgain.cs" />
+    <Compile Include="Migrations\201908070600077_updatedServiceAndServiceRequestModelsAgain.Designer.cs">
+      <DependentUpon>201908070600077_updatedServiceAndServiceRequestModelsAgain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908070606251_addedPriceToServiceTypeModel.cs" />
+    <Compile Include="Migrations\201908070606251_addedPriceToServiceTypeModel.Designer.cs">
+      <DependentUpon>201908070606251_addedPriceToServiceTypeModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908070612193_removedServiceDateFromServiceRequestModel.cs" />
+    <Compile Include="Migrations\201908070612193_removedServiceDateFromServiceRequestModel.Designer.cs">
+      <DependentUpon>201908070612193_removedServiceDateFromServiceRequestModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908071127079_updatedServiceTypeModel.cs" />
+    <Compile Include="Migrations\201908071127079_updatedServiceTypeModel.Designer.cs">
+      <DependentUpon>201908071127079_updatedServiceTypeModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908071345030_updatedServiceRequestModel.cs" />
+    <Compile Include="Migrations\201908071345030_updatedServiceRequestModel.Designer.cs">
+      <DependentUpon>201908071345030_updatedServiceRequestModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Car.cs" />
@@ -299,6 +327,7 @@
     <Compile Include="ViewModels\CarAndCustomerViewModel.cs" />
     <Compile Include="ViewModels\CarAndServicesViewModel.cs" />
     <Compile Include="ViewModels\CustAndCustViewModel.cs" />
+    <Compile Include="ViewModels\CustomerCarServiceRequestViewModel.cs" />
     <Compile Include="ViewModels\OneCarAndCustomerViewModel.cs" />
     <Compile Include="ViewModels\ServiceTypeViewModel.cs" />
   </ItemGroup>
@@ -406,6 +435,7 @@
     <Content Include="Views\Service\AllServiceForm.cshtml" />
     <Content Include="Views\Admin\AdminPanel.cshtml" />
     <Content Include="Views\Admin\PendingRequests.cshtml" />
+    <Content Include="Views\Admin\RejectReason.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -471,6 +501,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908021535407_addedServiceRequestModel.resx">
       <DependentUpon>201908021535407_addedServiceRequestModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908070553066_addedRejectionMessageToServiceRequestModel.resx">
+      <DependentUpon>201908070553066_addedRejectionMessageToServiceRequestModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908070558207_updatedServiceAndServiceRequestModels.resx">
+      <DependentUpon>201908070558207_updatedServiceAndServiceRequestModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908070600077_updatedServiceAndServiceRequestModelsAgain.resx">
+      <DependentUpon>201908070600077_updatedServiceAndServiceRequestModelsAgain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908070606251_addedPriceToServiceTypeModel.resx">
+      <DependentUpon>201908070606251_addedPriceToServiceTypeModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908070612193_removedServiceDateFromServiceRequestModel.resx">
+      <DependentUpon>201908070612193_removedServiceDateFromServiceRequestModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908071127079_updatedServiceTypeModel.resx">
+      <DependentUpon>201908071127079_updatedServiceTypeModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908071345030_updatedServiceRequestModel.resx">
+      <DependentUpon>201908071345030_updatedServiceRequestModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

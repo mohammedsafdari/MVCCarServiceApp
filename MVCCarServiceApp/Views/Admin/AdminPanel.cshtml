@@ -79,10 +79,12 @@
         <table class="text-center" style="margin-top:5px">
             @using (Html.BeginForm("AddServiceType", "Admin"))
             {
-                <tr>
-                    <td>@Html.TextBoxFor(c => c.ServiceType.ServiceName, new { @class = "form-control", placeholder = "Enter Service Name" })</td>
-                    <td><button type="submit" class="btn btn-success">Add Service Type</button></td>
-                </tr>
+            <tr>
+                <td>@Html.TextBoxFor(c => c.ServiceType.ServiceName, new { @class = "form-control", placeholder = "Enter Service Name" })</td>
+                <td>@Html.TextBoxFor(c => c.ServiceType.Price, new { @class = "form-control", placeholder = "Enter Price" })</td>
+                <td>@Html.TextBoxFor(c => c.ServiceType.Description, new { @class = "form-control", placeholder = "Enter Description" })</td>
+                <td><button type="submit" class="btn btn-success">Add Service Type</button></td>
+            </tr>
             }
             @using (Html.BeginForm("DeleteServiceType", "Admin"))
             {

@@ -85,13 +85,13 @@
             {
                 @*<div class="checkMark col-md-3 jumbotron text-center" style="margin-left:20px; height:120px; width:250px; padding:20px">@item.ServiceName</div>*@
 
-                <button onclick="@{@item.ServiceName}()" class="dropbtn checkMark col-md-3 jumbotron text-center" style="margin-left:20px; height:120px; width:250px; padding:20px; color:black">@item.ServiceName</button>
-                <div id="@item.ServiceName" class="dropdown-content">
-                    <p>@item.ServiceName</p>
+                <button onclick="@{@item.Keyword}()" class="dropbtn checkMark col-md-3 jumbotron text-center" style="margin-left:20px; height:120px; width:250px; padding:20px; color:black">@item.ServiceName</button>
+                <div id="@item.Keyword" class="dropdown-content">
+                    <p>@item.Description</p>
                 </div>
                 <script>
-                function @{@item.ServiceName}() {
-                    document.getElementById("@item.ServiceName").classList.toggle("show");
+                function @{@item.Keyword}() {
+                    document.getElementById("@item.Keyword").classList.toggle("show");
                         }
 
                         // Close the dropdown menu if the user clicks outside of it
