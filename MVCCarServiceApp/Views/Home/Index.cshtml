@@ -14,9 +14,11 @@
             <button class="dropbtn" style="font-family:'Agency FB'">About&nbsp;&nbsp;<i class="fas fa-angle-down"></i></button>
 
             <div class="dropdown-content text-center" style="font-family:'Agency FB'">
-                <a href="#company">Company</a>
+                <a href="#4Images">Why Us?</a>
                 <a href="#div4">Major Services</a>
-                <a href="#myCarousel">Why us?</a>
+                <a href="#carMakes">Major Car Makes</a>
+                <a href="#myCarousel">Our Offerings</a>
+                <a href="#company">Company</a>
             </div>
         </div>
     </li>
@@ -24,15 +26,17 @@
     <li><a href="https://www.lifehack.org/490519/5-car-maintenance-blogs-you-should-read-every-day">Blogs</a></li>
 }
 
-<div style="margin-left:-100px; margin-right:-100px">
+<div style="margin-left: -90px; margin-right: -89px;">
+    <!--Head Jumbotron-->
     <div class="jumbotron" id="divMain1" style="padding-top:10px; padding-bottom:30px; margin-left:86px; margin-right:86px">
         <img class="navbar-brand" src="~/Images/output-onlinepngtools (1).png" alt="" style="height:220px; padding:0px" />
         <h2 class="text-center" style="font-size:28px; margin-top:60px"><b>Top notch service is our main auto motive.</b></h2>
         <p class="lead text-center">MS Auto Garage is one of the best and most recognized Car Servicing Garages in Pune. </p>
         <p><a href="#company" class="btn btn-primary btn-lg" style="margin-left:220px">Learn more &raquo;</a></p>
     </div>
-
-    <div class="row text-center text-primary" style="margin-top:450px; margin-left:50px; margin-right:50px; margin-bottom:80px; font-size:30px; font-family:'Agency FB'">
+    <!--4 images-->
+    <div id="4Images" class="row text-center text-primary" style="margin-top: 280px; padding-top: 170px; margin-left:50px;
+            margin-right:50px; margin-bottom:80px; font-size:30px; font-family:'Agency FB'">
         <div class="col-md-3">
             <img style="margin-bottom:10px" src="~/Images/best_price.png" />
             <p>Best Prices</p>
@@ -53,7 +57,7 @@
             <p>Genuine Spares</p>
         </div>
     </div>
-
+    <!--Happy Customers-->
     <div class="row" style="margin-left:100px; margin-bottom: 70px;">
         <div class="col-md-3 row" style="background-color:#eeeeee; border-radius:20px; padding-bottom: 30px; margin-left: 140px">
             <i class="col-md-4 fa fa-smile fa-4x" style="padding-top: 40px; color:#428bca"></i>
@@ -70,12 +74,10 @@
             </div>
         </div>
     </div>
-
-    <div id="div4" style="height:650px">
+    <!--Major Services-->
+    <div id="div4" class="hideme" style="height:650px">
         <div class="row">
-            <div class="col-md-3" style="margin-left:120px"></div>
-            <div class="col-md-3 text-center" style="margin-left:20px"><h2 style="color:white; font-family:'Agency FB'">MAJOR <b>SERVICES</b></h2></div>
-            <div class="col-md-3" style="margin-left:20px"></div>
+            <h2 class="text-center" style="color:white; font-family:'Agency FB'">MAJOR <b>SERVICES</b></h2>
         </div>
 
         <hr />
@@ -85,9 +87,33 @@
             {
                 @*<div class="checkMark col-md-3 jumbotron text-center" style="margin-left:20px; height:120px; width:250px; padding:20px">@item.ServiceName</div>*@
 
-                <button onclick="@{@item.Keyword}()" class="dropbtn checkMark col-md-3 jumbotron text-center" style="margin-left:20px; height:120px; width:250px; padding:20px; color:black">@item.ServiceName</button>
-                <div id="@item.Keyword" class="dropdown-content">
-                    <p>@item.Description</p>
+                <button onclick="@{@item.Keyword}()" class="dropbtn checkMark col-md-3 jumbotron text-center"
+                        style="margin-left:20px; height:120px; width:250px; padding:20px; color:black">
+                    @item.ServiceName
+                </button>
+                <div id="@item.Keyword" class="dropdown-content" style="width: 1100px; height: 490px; border-radius: 25px;
+                        font-family:'Agency FB'">
+                    <div class="row">
+                        <div class="col-md-11 text-center">
+                            <h2>
+                                <span style="font-family:'Agency FB'; padding-left: 27px;"><b>@item.ServiceName</b></span>
+                            </h2>
+                        </div>
+                        <div class="col-md-1">
+                            <h2>
+                                <i class="fas fa-times" style="color:#8c8c8c" onMouseOver="this.style.color='#b32d2d'"
+                                   onMouseOut="this.style.color='#8c8c8c'"></i>
+                            </h2>
+                        </div>
+                    </div>
+
+                    @*<h2 style="padding-left:50px"><span style="font-family:'Agency FB'"><b>@item.ServiceName</b></span>
+                        <i class="fas fa-times" style="color:#8c8c8c; padding-left: 860px;"></i></h2>*@
+                    <hr style="border: 2px solid #a3a3a3" />
+                    <div style="font-size:x-large; padding-left: 35px; padding-right: 35px">
+                        <p>@item.Description</p>
+                        <p>Base Price- @item.Price</p>
+                    </div>
                 </div>
                 <script>
                 function @{@item.Keyword}() {
@@ -111,8 +137,58 @@
             }
         </div>
     </div>
+    <!--Car Makes Header-->
+    <div id="carMakes" class="text-center hideme" style="color:white; background-color:#428bca; border-radius: 20px; margin-left: 25px; margin-right: 25px">
+        <h1 style="padding-top: 30px; padding-bottom: 30px"><span style="font-family:'Agency FB'">We support many makes and models</span></h1>
+    </div>
+</div>
 
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+<!--Car Makes-->
+<div id="carMakes" class="hideme" style="margin-bottom: 20px">
+    <div class="row text-center logos" style="margin-top: 40px">
+        <div class="col-md-3" style="border-right: 2px solid #a3a3a3">
+            <img style="width:50%" src="~/Images/mercedes_logos_PNG3.png" />
+        </div>
+        <div class="col-md-3" style="border-right: 2px solid #a3a3a3">
+            <img style="width:50%; padding-top: 30px; padding-bottom: 29px;" src="~/Images/McLaren-logo-2002-2560x1440.png" />
+        </div>
+        <div class="col-md-3" style="border-right: 2px solid #a3a3a3">
+            <img style="width:50%; padding-top: 30px; padding-bottom: 29px;" src="~/Images/audi-logo-png-1920x1080-hd-1080p-1920.png" />
+        </div>
+        <div class="col-md-3">
+            <img style="width:40%; padding-top: 6px; padding-bottom: 6px;" src="~/Images/lamborghini_PNG10709.png" />
+        </div>
+    </div>
+    <div class="row text-center logos" style="margin-top:30px">
+        <div class="col-md-4" style="border-right: 2px solid #a3a3a3">
+            <img style="width:35%;" src="~/Images/580b585b2edbce24c47b2c54.png" />
+        </div>
+        <div class="col-md-4" style="border-right: 2px solid #a3a3a3">
+            <img style="width:35%; padding-top: 42px; padding-bottom: 43px;" src="~/Images/hennessey.png" />
+        </div>
+        <div class="col-md-4">
+            <img style="width:35%; padding-top: 5px; padding-bottom: 4px;" src="~/Images/Koenigsegg-logo-1994-2048x2048.png" />
+        </div>
+    </div>
+    <div class="row text-center logos" style="margin-top:30px">
+        <div class="col-md-3" style="border-right: 2px solid #a3a3a3">
+            <img style="width:100%; padding-top: 5px; padding-bottom: 5px;" src="~/Images/Wmotors-600x315.png" />
+        </div>
+        <div class="col-md-3" style="border-right: 2px solid #a3a3a3">
+            <img style="width:100%" src="~/Images/Pagani-emblem-1992-1920x1080.png" />
+        </div>
+        <div class="col-md-3" style="border-right: 2px solid #a3a3a3">
+            <img style="width:70%; padding-top: 32px; padding-bottom: 33px;" src="~/Images/Aston Martin.png" />
+        </div>
+        <div class="col-md-3">
+            <img style="width:70%; padding-top: 14px; padding-bottom: 14px;" src="~/Images/Porsche-Logo-PNG-Pic.png" />
+        </div>
+    </div>
+</div>
+
+<div style="margin-left: -90px; margin-right: -89px;">
+    <!--Our Offering Carousel-->
+    <div id="myCarousel" class="carousel slide hideme" data-ride="carousel">
         <!-- Indicators -->
         <ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -126,7 +202,7 @@
             <div class="item active">
                 <img src="~/Images/4491739-muscle-car-wallpapers.jpg" />
                 <div class="carousel-caption" style="padding-top:0px">
-                    <h1 style="border-radius:10px; margin-top:-10px; margin-bottom:45px; font-family:'Agency FB'; height:80px; padding-top:20px; margin-left:-250px; margin-right:-250px; background-color:#428bca">Why Us?</h1>
+                    <h1 style="border-radius:10px; margin-top:-10px; margin-bottom:45px; font-family:'Agency FB'; height:80px; padding-top:20px; margin-left:-250px; margin-right:-250px; background-color:#428bca">Our Offerings</h1>
                     <div class="checkMark jumbotron text-center" style="color:black; padding-left:10px; padding-right:10px; margin-bottom:540px; margin-left:283px">
                         <div class="row">
                             <i class="fas fa-check-circle fa-2x text-info col-md-2"></i>
@@ -139,7 +215,7 @@
             <div class="item">
                 <img src="~/Images/joker-lamborghini-and-batmobile_1562105326.jpg" style="width:100%">
                 <div class="carousel-caption">
-                    <h1 style="border-radius:10px; margin-bottom:50px; font-family:'Agency FB'; height:80px; padding-top:20px; margin-left:-250px; margin-right:-250px; background-color:#428bca">Why Us?</h1>
+                    <h1 style="border-radius:10px; margin-bottom:50px; font-family:'Agency FB'; height:80px; padding-top:20px; margin-left:-250px; margin-right:-250px; background-color:#428bca">Our Offerings</h1>
                     <div class="checkMark jumbotron text-center" style="color:black; padding-left:10px; padding-right:10px; margin-bottom:450px; margin-left:263px; width:300px">
                         <div class="row">
                             <i class="fas fa-check-circle fa-2x text-info col-md-2"></i>
@@ -152,7 +228,7 @@
             <div class="item">
                 <img src="~/Images/285106.jpg">
                 <div class="carousel-caption">
-                    <h1 style="border-radius:10px; margin-bottom:50px; font-family:'Agency FB'; height:80px; padding-top:20px; margin-left:-250px; margin-right:-250px; background-color:#428bca">Why Us?</h1>
+                    <h1 style="border-radius:10px; margin-bottom:50px; font-family:'Agency FB'; height:80px; padding-top:20px; margin-left:-250px; margin-right:-250px; background-color:#428bca">Our Offerings</h1>
                     <div class="checkMark jumbotron text-center" style="color:black; padding-left:10px; padding-right:10px; margin-bottom:535px; margin-left:263px; width:300px">
                         <div class="row">
                             <i class="fas fa-check-circle fa-2x text-info col-md-2"></i>
@@ -164,7 +240,7 @@
             <div class="item">
                 <img style="width:100%" src="~/Images/carvanahaulerdeliverynew_1200xx7360-4140-0-575.jpg">
                 <div class="carousel-caption">
-                    <h1 style="border-radius:10px; margin-bottom:50px; font-family:'Agency FB'; height:80px; padding-top:20px; margin-left:-250px; margin-right:-250px; background-color:#428bca">Why Us?</h1>
+                    <h1 style="border-radius:10px; margin-bottom:50px; font-family:'Agency FB'; height:80px; padding-top:20px; margin-left:-250px; margin-right:-250px; background-color:#428bca">Our Offerings</h1>
                     <div class="checkMark jumbotron text-center" style="color:black; padding-left:10px; padding-right:10px; margin-bottom:450px; margin-left:263px; width:300px">
                         <div class="row">
                             <i class="fas fa-check-circle fa-2x text-info col-md-2"></i>
@@ -187,11 +263,12 @@
     </div>
 </div>
 
-<hr />
+<hr style="border: 1px solid #428bca" />
 
+<!--Company Details-->
 <div id="company">
     <h1>About the Company</h1>
-    <hr />
+    <hr style="border: 1px solid #428bca" />
     <h2>MS Auto Garage</h2>
 
     <p style="font-size:medium">
@@ -240,12 +317,13 @@
     </div>
 </div>
 
-<hr />
+<hr style="border: 1px solid #428bca" />
 
+<!--Contact-->
 <div id="contact">
     <h2>Contact Us</h2>
-    <hr />
-    <h3>Your Contact Page.</h3>
+    <hr style="border: 1px solid #428bca" />
+    <h3>MS Auto Garage.</h3>
 
     <address>
         105, Saifee Nagar,<br />
@@ -260,13 +338,14 @@
     </address>
 </div>
 
-<div style="background-color:#428bca; height:270px; margin-left:-100px; margin-right:-100px; padding-top:40px; padding-right:25px">
+<!--Footer-->
+<div style="background-color:#428bca; height:270px; padding-top:40px; padding-right:25px; margin-left: -90px; margin-right: -89px">
     <img class="navbar-brand" style="height:150px; margin-right:20px; margin-left: 30px; margin-top: 21px;" src="~/Images/GOL_logo_0.png" />
     <div class="text-center" style="font-family:'Agency FB'; font-size:50px;">We <i class="fas fa-heart text-danger fa-beat"></i> new friends. For Secure and hassle free car driving experience, Follow us on- </div>
     <div style="margin-left:700px; margin-top:20px; color:#2f3036">
         <a href="https://twitter.com/mohammedsafdari"><i class="fab fa-twitter fa-3x" style="color:#2f3036" onMouseOver="this.style.color='#1DA1F2'" onMouseOut="this.style.color='#2f3036'"></i></a>
         <a href="https://www.facebook.com/mohammedsafdari"><i class="fab fa-facebook-square fa-3x" style="color:#2f3036" onMouseOver="this.style.color='#3b5998'" onMouseOut="this.style.color='#2f3036'"></i></a>
-        <a href="https://www.instagram.com/mohammedsafdari"><i class="fab fa-instagram fa-3x" style="color:#2f3036" onMouseOver="this.style.color='#fb3958'" onMouseOut="this.style.color='#2f3036'"></i></a>
+        <a href="https://www.instagram.com/mohammedsafdari"><i class="fab fa-instagram fa-3x" style="color:#2f3036" onMouseOver="this.style.color='#cd486b'" onMouseOut="this.style.color='#2f3036'"></i></a>
         <a href="https://www.linkedin.com/in/mohammed-safdari-80a965121/"><i class="fab fa-linkedin fa-3x" style="color:#2f3036" onMouseOver="this.style.color='#0077B5'" onMouseOut="this.style.color='#2f3036'"></i></a>
     </div>
 </div>

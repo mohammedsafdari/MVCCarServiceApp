@@ -31,7 +31,8 @@ namespace MVCCarServiceApp
                       "~/Content/HomeIndex.css",
                       "~/Content/navDrop.css",
                       "~/Content/serviceDrop.css",
-                      "~/Content/beat.css"));
+                      "~/Content/beat.css",
+                      "~/Content/logoHover.css"));
         }
     }
 }

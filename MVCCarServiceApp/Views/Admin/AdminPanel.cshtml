@@ -8,7 +8,7 @@
 <hr />
 
 @*<button class="btn btn-primary" style="width:100%"></button>*@
-<a class="btn btn-primary" style="width:100%; font-family:'Agency FB'; font-size:large" 
+<a class="btn btn-primary" style="width:100%; font-family:'Agency FB'; font-size:large"
    href="http://localhost:60807/Admin/PendingRequests"><i class="fa fa-spinner fa-pulse"></i><b> PENDING REQUESTS</b></a>
 @*@Html.ActionLink("PENDING REQUESTS","PendingRequests", "", new { @class="btn btn-primary fa fa-spinner", style="width:100%"})*@
 
@@ -31,6 +31,7 @@
                     <td>@Html.TextBoxFor(c => c.CarMake.Make, new { @class = "form-control", placeholder = "Enter Car Make" })</td>
                     <td><button type="submit" class="btn btn-success">Add Car Make</button></td>
                 </tr>
+                <tr><td>@Html.ValidationMessageFor(c => c.CarMake.Make, "", new { @class = "text-danger" })</td></tr>
             }
             @using (Html.BeginForm("DeleteCarMake", "Admin"))
             {
@@ -57,6 +58,7 @@
                     <td>@Html.TextBoxFor(c => c.CarStyle.Style, new { @class = "form-control", placeholder = "Enter Car Style" })</td>
                     <td><button type="submit" class="btn btn-success">Add Car Style</button></td>
                 </tr>
+                <tr><td>@Html.ValidationMessageFor(c => c.CarStyle.Style, "", new { @class = "text-danger" })</td></tr>
             }
             @using (Html.BeginForm("DeleteCarStyle", "Admin"))
             {
@@ -79,12 +81,19 @@
         <table class="text-center" style="margin-top:5px">
             @using (Html.BeginForm("AddServiceType", "Admin"))
             {
-            <tr>
-                <td>@Html.TextBoxFor(c => c.ServiceType.ServiceName, new { @class = "form-control", placeholder = "Enter Service Name" })</td>
-                <td>@Html.TextBoxFor(c => c.ServiceType.Price, new { @class = "form-control", placeholder = "Enter Price" })</td>
-                <td>@Html.TextBoxFor(c => c.ServiceType.Description, new { @class = "form-control", placeholder = "Enter Description" })</td>
-                <td><button type="submit" class="btn btn-success">Add Service Type</button></td>
-            </tr>
+                <tr>
+                    <td>@Html.TextBoxFor(c => c.ServiceType.ServiceName, new { @class = "form-control", placeholder = "Enter Service Name" })</td>
+                    <td>@Html.TextBoxFor(c => c.ServiceType.Price, new { @class = "form-control", placeholder = "Enter Price" })</td>
+                </tr>
+                <tr>
+                    <td>@Html.ValidationMessageFor(c => c.ServiceType.ServiceName, "", new { @class = "text-danger" })</td>
+                    <td>@Html.ValidationMessageFor(c => c.ServiceType.Price, "", new { @class = "text-danger" })</td>
+                </tr>
+                <tr>
+                    <td>@Html.TextAreaFor(c => c.ServiceType.Description, new { @class = "form-control", placeholder = "Enter Description" })</td>
+                    <td><button type="submit" class="btn btn-success">Add Service Type</button></td>
+                </tr>
+                <tr><td>@Html.ValidationMessageFor(c => c.ServiceType.Description, "", new { @class = "text-danger" })</td></tr>
             }
             @using (Html.BeginForm("DeleteServiceType", "Admin"))
             {
@@ -96,3 +105,7 @@
         </table>
     </div>
 </div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

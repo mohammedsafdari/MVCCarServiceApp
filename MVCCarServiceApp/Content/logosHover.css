@@ -1,0 +1,4 @@
+﻿.logos:hover{
+    transform: translateY(-20px);
+    transition-duration: 5s;
+}

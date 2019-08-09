@@ -41,25 +41,106 @@ namespace MVCCarServiceApp.Controllers
 
 		public ActionResult AddCarMake(AdminViewModel viewModel)
 		{
-			HttpResponseMessage response = GlobalVariables.WebApiClient.PostAsJsonAsync("APICarMake", viewModel.CarMake).Result;
-			return RedirectToAction("AdminPanel");
+            if (ModelState.IsValid)
+            {
+                HttpResponseMessage response = GlobalVariables.WebApiClient.PostAsJsonAsync("APICarMake", viewModel.CarMake).Result;
+                return RedirectToAction("AdminPanel");
+            }
+            else
+            {
+                HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("APICarMake").Result;
+                var carMakes = response.Content.ReadAsAsync<IEnumerable<CarMake>>().Result;
+
+                HttpResponseMessage response1 = GlobalVariables.WebApiClient.GetAsync("APICarStyle").Result;
+                var carStyles = response1.Content.ReadAsAsync<IEnumerable<CarStyle>>().Result;
+
+                HttpResponseMessage response2 = GlobalVariables.WebApiClient.GetAsync("APIServiceType").Result;
+                var serviceTypes = response2.Content.ReadAsAsync<IEnumerable<ServiceType>>().Result;
+
+                var viewModel1 = new AdminViewModel
+                {
+                    CarMakes = carMakes,
+                    CarStyles = carStyles,
+                    ServiceTypes = serviceTypes
+                };
+
+                return View("AdminPanel", viewModel1);
+            }
 		}
 
 		public ActionResult AddCarStyle(AdminViewModel viewModel)
 		{
-			HttpResponseMessage response = GlobalVariables.WebApiClient.PostAsJsonAsync("APICarStyle", viewModel.CarStyle).Result;
-			return RedirectToAction("AdminPanel");
-		}
+            if (ModelState.IsValid)
+            {
+                HttpResponseMessage response = GlobalVariables.WebApiClient.PostAsJsonAsync("APICarStyle", viewModel.CarStyle).Result;
+                return RedirectToAction("AdminPanel");
+            }
+            else
+            {
+                HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("APICarMake").Result;
+                var carMakes = response.Content.ReadAsAsync<IEnumerable<CarMake>>().Result;
+
+                HttpResponseMessage response1 = GlobalVariables.WebApiClient.GetAsync("APICarStyle").Result;
+                var carStyles = response1.Content.ReadAsAsync<IEnumerable<CarStyle>>().Result;
+
+                HttpResponseMessage response2 = GlobalVariables.WebApiClient.GetAsync("APIServiceType").Result;
+                var serviceTypes = response2.Content.ReadAsAsync<IEnumerable<ServiceType>>().Result;
+
+                var viewModel1 = new AdminViewModel
+                {
+                    CarMakes = carMakes,
+                    CarStyles = carStyles,
+                    ServiceTypes = serviceTypes
+                };
+
+                return View("AdminPanel", viewModel1);
+            }
+        }
 
 		public ActionResult AddServiceType(AdminViewModel viewModel)
 		{
-            var str = viewModel.ServiceType.ServiceName;
-            var str2 = str.Substring(0, str.IndexOf(" "));
-            viewModel.ServiceType.Keyword = str2.Substring(0, str2.IndexOf(","));
+            if (ModelState.IsValid)
+            {
+                var str = viewModel.ServiceType.ServiceName;
+                try
+                {
+                    str = str.Replace(",", "");
+                }
+                catch { }
+                try
+                {
+                    viewModel.ServiceType.Keyword = str.Substring(0, str.IndexOf(" "));
+                }
+                catch
+                {
+                    viewModel.ServiceType.Keyword = str;
+                }
 
-            HttpResponseMessage response = GlobalVariables.WebApiClient.PostAsJsonAsync("APIServiceType", viewModel.ServiceType).Result;
-			return RedirectToAction("AdminPanel");
-		}
+
+                HttpResponseMessage response = GlobalVariables.WebApiClient.PostAsJsonAsync("APIServiceType", viewModel.ServiceType).Result;
+                return RedirectToAction("AdminPanel");
+            }
+            else
+            {
+                HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("APICarMake").Result;
+                var carMakes = response.Content.ReadAsAsync<IEnumerable<CarMake>>().Result;
+
+                HttpResponseMessage response1 = GlobalVariables.WebApiClient.GetAsync("APICarStyle").Result;
+                var carStyles = response1.Content.ReadAsAsync<IEnumerable<CarStyle>>().Result;
+
+                HttpResponseMessage response2 = GlobalVariables.WebApiClient.GetAsync("APIServiceType").Result;
+                var serviceTypes = response2.Content.ReadAsAsync<IEnumerable<ServiceType>>().Result;
+
+                var viewModel1 = new AdminViewModel
+                {
+                    CarMakes = carMakes,
+                    CarStyles = carStyles,
+                    ServiceTypes = serviceTypes
+                };
+
+                return View("AdminPanel", viewModel1);
+            }
+        }
 
         public ActionResult DeleteCarMake(AdminViewModel viewModel)
         {

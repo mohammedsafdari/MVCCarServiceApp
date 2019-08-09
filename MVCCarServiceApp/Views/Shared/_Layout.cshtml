@@ -8,6 +8,11 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @RenderSection("css", required: false)
+    <style>
+        .hideme{
+            opacity: 0;
+        }
+    </style>
 </head>
 <body>
     <div id="navbar" class="navbar navbar-inverse navbar-fixed-top" style="background:black; border-bottom:none; height:10px">
@@ -43,7 +48,7 @@
     <div class="container body-content" style="padding-left:0px; padding-right:0px">
         @RenderBody()
     </div>
-    <footer style="clear:both; background-color:#2f3036; height:80px; padding-top:30px">
+    <footer style="clear:both; background-color:#2f3036; height:80px; padding-top:30px;width:100%; bottom:0px">
         <div class="col-md-4 text-primary text-center">
             <p>&copy; @DateTime.Now.Year - MS Auto Garage Application</p>
         </div>
@@ -97,24 +102,32 @@
             prevScrollpos = currentScrollPos;
         }
     </script>
-    @*<script>
-                    function myFunction() {
-                        document.getElementById("myDropdown").classList.toggle("show");
-                            }
-
-                            // Close the dropdown menu if the user clicks outside of it
-                            window.onclick = function (event) {
-                                if (!event.target.matches('.dropbtn')) {
-                            var dropdowns = document.getElementsByClassName("dropdown-content");
-                            var i;
-                            for (i = 0; i < dropdowns.length; i++) {
-                                var openDropdown = dropdowns[i];
-                                if (openDropdown.classList.contains('show')) {
-                                    openDropdown.classList.remove('show');
-                                }
-                    }
-                        }
-                    }
-        </script>*@
+    <script>
+        $(document).ready(function() {
+    
+    /* Every time the window is scrolled ... */
+    $(window).scroll( function(){
+    
+        /* Check the location of each desired element */
+        $('.hideme').each( function(i){
+            
+            /*var bottom_of_object = $(this).offset().top + $(this).outerHeight();
+            var bottom_of_window = $(window).scrollTop() + $(window).height();*/
+            var bottom_of_object = $(this).offset().top;
+            var bottom_of_window = $(window).scrollTop() + $(window).height();
+            
+            /* If the object is completely visible in the window, fade it it */
+            if( bottom_of_window > bottom_of_object ){
+                
+                $(this).animate({'opacity':'1'},1000);
+                    
+            }
+            
+        }); 
+    
+    });
+    
+});
+    </script>
 </body>
 </html>
