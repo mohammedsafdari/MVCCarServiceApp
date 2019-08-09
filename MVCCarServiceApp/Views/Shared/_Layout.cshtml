@@ -8,12 +8,14 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @RenderSection("css", required: false)
+    <script src="https://unpkg.com/scrollreveal"></script>
     <style>
-        .hideme{
+        .hideme {
             opacity: 0;
         }
     </style>
 </head>
+@*<body onload="document.body.style.opacity='1'">*@
 <body>
     <div id="navbar" class="navbar navbar-inverse navbar-fixed-top" style="background:black; border-bottom:none; height:10px">
         <div class="container">
@@ -64,6 +66,7 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--Smooth Scroll to div-->
     <script>
         $(document).ready(function () {
             // Add smooth scrolling to all links
@@ -90,6 +93,7 @@
             });
         });
     </script>
+    <!--navbar disappear on scroll down-->
     <script>
         var prevScrollpos = window.pageYOffset;
         window.onscroll = function () {
@@ -102,32 +106,36 @@
             prevScrollpos = currentScrollPos;
         }
     </script>
+    <!--Fade in on scroll down-->
     <script>
-        $(document).ready(function() {
-    
-    /* Every time the window is scrolled ... */
-    $(window).scroll( function(){
-    
-        /* Check the location of each desired element */
-        $('.hideme').each( function(i){
-            
-            /*var bottom_of_object = $(this).offset().top + $(this).outerHeight();
-            var bottom_of_window = $(window).scrollTop() + $(window).height();*/
-            var bottom_of_object = $(this).offset().top;
-            var bottom_of_window = $(window).scrollTop() + $(window).height();
-            
-            /* If the object is completely visible in the window, fade it it */
-            if( bottom_of_window > bottom_of_object ){
-                
-                $(this).animate({'opacity':'1'},1000);
-                    
-            }
-            
-        }); 
-    
-    });
-    
-});
+        $(document).ready(function () {
+
+            /* Every time the window is scrolled ... */
+            $(window).scroll(function () {
+
+                /* Check the location of each desired element */
+                $('.hideme').each(function (i) {
+
+                    /*var bottom_of_object = $(this).offset().top + $(this).outerHeight();
+                    var bottom_of_window = $(window).scrollTop() + $(window).height();*/
+                    var middle_of_object = $(this).offset().top + ($(this).outerHeight()) / 2;
+                    var bottom_of_window = $(window).scrollTop() + $(window).height();
+
+                    /* If the object is completely visible in the window, fade it it */
+                    if (bottom_of_window > middle_of_object) {
+
+                        $(this).animate({ 'opacity': '1' }, 1500);
+
+                    }
+
+                });
+
+            });
+
+        });
+    </script>
+    <script>
+        ScrollReveal().reveal('.scrollReveal', { delay: 1000 });
     </script>
 </body>
 </html>

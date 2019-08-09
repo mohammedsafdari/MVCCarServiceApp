@@ -8,7 +8,7 @@ namespace MVCCarServiceApp.ViewModels
 {
     public class ServiceTypeViewModel
     {
-        public ServiceType ServiceType { get; set; }
+        public int CheckInteger { get; set; }
         public IEnumerable<ServiceType> ServiceTypes { get; set; }
     }
 }

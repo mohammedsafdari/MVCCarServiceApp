@@ -28,11 +28,11 @@
 
 <div style="margin-left: -90px; margin-right: -89px;">
     <!--Head Jumbotron-->
-    <div class="jumbotron" id="divMain1" style="padding-top:10px; padding-bottom:30px; margin-left:86px; margin-right:86px">
-        <img class="navbar-brand" src="~/Images/output-onlinepngtools (1).png" alt="" style="height:220px; padding:0px" />
-        <h2 class="text-center" style="font-size:28px; margin-top:60px"><b>Top notch service is our main auto motive.</b></h2>
-        <p class="lead text-center">MS Auto Garage is one of the best and most recognized Car Servicing Garages in Pune. </p>
-        <p><a href="#company" class="btn btn-primary btn-lg" style="margin-left:220px">Learn more &raquo;</a></p>
+    <div class="jumbotron wrap" id="divMain1" style="padding-top:10px; padding-bottom:30px; margin-left:86px; margin-right:86px;">
+        <img class="navbar-brand slideInRight animated" src="~/Images/output-onlinepngtools (1).png" alt="" style="height:220px; padding:0px" />
+        <h2 class="text-center slideInRight animated" style="font-size:28px; margin-top:60px"><b>Top notch service is our main auto motive.</b></h2>
+        <p class="lead text-center slideInRight animated">MS Auto Garage is one of the best and most recognized Car Servicing Garages in Pune. </p>
+        <p><a href="#company" class="btn btn-primary btn-lg slideInRight animated" style="margin-left:220px">Learn more &raquo;</a></p>
     </div>
     <!--4 images-->
     <div id="4Images" class="row text-center text-primary" style="margin-top: 280px; padding-top: 170px; margin-left:50px;
@@ -61,7 +61,7 @@
     <div class="row" style="margin-left:100px; margin-bottom: 70px;">
         <div class="col-md-3 row" style="background-color:#eeeeee; border-radius:20px; padding-bottom: 30px; margin-left: 140px">
             <i class="col-md-4 fa fa-smile fa-4x" style="padding-top: 40px; color:#428bca"></i>
-            <div class="col-md-8 text-center" style="padding-top:20px"><h2 class="text-primary">10,000+</h2><h4>Happy Customers</h4></div>
+            <div class="col-md-8 text-center" style="padding-top:20px"><h2 class="text-primary">@Model.CheckInteger</h2><h4>Happy Customers</h4></div>
         </div>
         <div class="col-md-3 text-center" style="background-color:#eeeeee; border-radius:20px; padding-top: 15px; padding-bottom: 35px; margin-left: 175px;">
             <h2>Google Rating: 4.5</h2>
@@ -87,10 +87,12 @@
             {
                 @*<div class="checkMark col-md-3 jumbotron text-center" style="margin-left:20px; height:120px; width:250px; padding:20px">@item.ServiceName</div>*@
 
+                <span title="Click to View Service Details">
                 <button onclick="@{@item.Keyword}()" class="dropbtn checkMark col-md-3 jumbotron text-center"
                         style="margin-left:20px; height:120px; width:250px; padding:20px; color:black">
                     @item.ServiceName
                 </button>
+                </span>
                 <div id="@item.Keyword" class="dropdown-content" style="width: 1100px; height: 490px; border-radius: 25px;
                         font-family:'Agency FB'">
                     <div class="row">
@@ -343,9 +345,9 @@
     <img class="navbar-brand" style="height:150px; margin-right:20px; margin-left: 30px; margin-top: 21px;" src="~/Images/GOL_logo_0.png" />
     <div class="text-center" style="font-family:'Agency FB'; font-size:50px;">We <i class="fas fa-heart text-danger fa-beat"></i> new friends. For Secure and hassle free car driving experience, Follow us on- </div>
     <div style="margin-left:700px; margin-top:20px; color:#2f3036">
-        <a href="https://twitter.com/mohammedsafdari"><i class="fab fa-twitter fa-3x" style="color:#2f3036" onMouseOver="this.style.color='#1DA1F2'" onMouseOut="this.style.color='#2f3036'"></i></a>
-        <a href="https://www.facebook.com/mohammedsafdari"><i class="fab fa-facebook-square fa-3x" style="color:#2f3036" onMouseOver="this.style.color='#3b5998'" onMouseOut="this.style.color='#2f3036'"></i></a>
-        <a href="https://www.instagram.com/mohammedsafdari"><i class="fab fa-instagram fa-3x" style="color:#2f3036" onMouseOver="this.style.color='#cd486b'" onMouseOut="this.style.color='#2f3036'"></i></a>
-        <a href="https://www.linkedin.com/in/mohammed-safdari-80a965121/"><i class="fab fa-linkedin fa-3x" style="color:#2f3036" onMouseOver="this.style.color='#0077B5'" onMouseOut="this.style.color='#2f3036'"></i></a>
+        <a href="https://twitter.com/mohammedsafdari" title="Twitter"><i class="fab fa-twitter fa-3x" style="color:#2f3036" onMouseOver="this.style.color='#1DA1F2'" onMouseOut="this.style.color='#2f3036'"></i></a>
+        <a href="https://www.facebook.com/mohammedsafdari" title="Facebook"><i class="fab fa-facebook-square fa-3x" style="color:#2f3036" onMouseOver="this.style.color='#3b5998'" onMouseOut="this.style.color='#2f3036'"></i></a>
+        <a href="https://www.instagram.com/mohammedsafdari" title="Instagram"><i class="fab fa-instagram fa-3x" style="color:#2f3036" onMouseOver="this.style.color='#cd486b'" onMouseOut="this.style.color='#2f3036'"></i></a>
+        <a href="https://www.linkedin.com/in/mohammed-safdari-80a965121/" title="LinkedIn"><i class="fab fa-linkedin fa-3x" style="color:#2f3036" onMouseOver="this.style.color='#0077B5'" onMouseOut="this.style.color='#2f3036'"></i></a>
     </div>
 </div>

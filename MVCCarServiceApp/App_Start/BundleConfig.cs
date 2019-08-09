@@ -32,7 +32,9 @@ namespace MVCCarServiceApp
                       "~/Content/navDrop.css",
                       "~/Content/serviceDrop.css",
                       "~/Content/beat.css",
-                      "~/Content/logoHover.css"));
+                      "~/Content/logoHover.css",
+                      "~/Content/floatUp.css",
+                      "~/Content/slideInRight.css"));
         }
     }
 }

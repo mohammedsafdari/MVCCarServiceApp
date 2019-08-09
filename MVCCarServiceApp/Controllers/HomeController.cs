@@ -16,9 +16,22 @@ namespace MVCCarServiceApp.Controllers
             HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("APIServiceType").Result;
             var serviceTypes = response.Content.ReadAsAsync<IEnumerable<ServiceType>>().Result;
 
+            HttpResponseMessage response1 = GlobalVariables.WebApiClient.GetAsync("APICustomer").Result;
+            var users = response1.Content.ReadAsAsync<IEnumerable<ApplicationUser>>().Result;
+
+            int count=0;
+
+            foreach (var item in users)
+            {
+                count++;
+            }
+
+            count -= 1;
+
             var viewModel = new ServiceTypeViewModel
             {
-                ServiceTypes = serviceTypes
+                ServiceTypes = serviceTypes,
+                CheckInteger = count
             };
             return View(viewModel);
         }
