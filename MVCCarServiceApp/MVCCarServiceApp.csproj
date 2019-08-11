@@ -213,6 +213,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
+    <Compile Include="Extensions\ClaimsPrincipalExtension.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -333,13 +334,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\AditiTheGenius.css" />
-    <Content Include="Content\BackgroundImage.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\CustomerBackground.css" />
+    <Content Include="Content\customNav.css" />
     <Content Include="Content\div.css" />
     <Content Include="Content\floatUp.css" />
     <Content Include="Content\FormValidation.css" />
+    <Content Include="Content\HomeBackground.css" />
     <Content Include="Content\HomeIndex.css" />
     <Content Include="Content\IndexHome.css" />
     <Content Include="Content\logoHover.css" />
@@ -348,12 +350,13 @@
     <Content Include="Content\onLoadFadein.css" />
     <Content Include="Content\RegFormBackground.css" />
     <Content Include="Content\serviceDrop.css" />
-    <Content Include="Content\slideInRight.css" />
+    <Content Include="Content\Transitions.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\09.jpg" />
+    <Content Include="Images\1096578-vertical-black-car-wallpaper-1920x1080-lockscreen.jpg" />
     <Content Include="Images\13643.jpg" />
     <Content Include="Images\2020-Tesla-Roadster-V10-1080.jpg" />
     <Content Include="Images\285106.jpg" />
@@ -365,6 +368,7 @@
     <Content Include="Images\best_price.png" />
     <Content Include="Images\car-3126964_960_720.jpg" />
     <Content Include="Images\car-repair-362150__480.jpg" />
+    <Content Include="Images\Car-Wallpaper-For-Mac-38-2880x1800.jpg" />
     <Content Include="Images\carsectionhero_6f49.resizeViewPort.noScale.firstDesktopImageReference.jpg" />
     <Content Include="Images\carvanahaulerdeliverynew_1200xx7360-4140-0-575.jpg" />
     <Content Include="Images\desktop-3246124_960_720.jpg" />
@@ -372,6 +376,7 @@
     <Content Include="Images\download1.jpg" />
     <Content Include="Images\expert.png" />
     <Content Include="Images\ezgif-1-b4fe78f814d01.jpg" />
+    <Content Include="Images\ferrari_laferrari_4k-HD.jpg" />
     <Content Include="Images\free_pickup.png" />
     <Content Include="Images\GOL_logo_0.png" />
     <Content Include="Images\hennessey.png" />

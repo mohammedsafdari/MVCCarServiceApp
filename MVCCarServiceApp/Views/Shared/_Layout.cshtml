@@ -9,15 +9,10 @@
     @Scripts.Render("~/bundles/modernizr")
     @RenderSection("css", required: false)
     <script src="https://unpkg.com/scrollreveal"></script>
-    <style>
-        .hideme {
-            opacity: 0;
-        }
-    </style>
 </head>
 @*<body onload="document.body.style.opacity='1'">*@
 <body>
-    <div id="navbar" class="navbar navbar-inverse navbar-fixed-top" style="background:black; border-bottom:none; height:10px">
+    <div id="navbar" class="navbar navbar-inverse navbar-fixed-top updatedNav1" style="border-bottom:none; height:10px">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -34,12 +29,12 @@
                 <ul class="nav navbar-nav">
                     @if (ViewContext.HttpContext.User.IsInRole(MVCCarServiceApp.Models.Roles.Admin))
                     {
-                        <li>@Html.ActionLink("Customer List", "Customers", "Customer", "", new { @class = "navElement" })</li>
-                        <li>@Html.ActionLink("Admin Panel", "AdminPanel", "Admin", "", new { @class = "navElement" })</li>
+                        <li>@Html.ActionLink("Customer List", "Customers", "Customer", "", new { @class = "navElement updatedNav", style="color:white" })</li>
+                        <li>@Html.ActionLink("Admin Panel", "AdminPanel", "Admin", "", new { @class = "navElement updatedNav" })</li>
                     }
                     else
                     {
-                        <li>@Html.ActionLink("View Cars", "CustomerDetails", "Car", "", new { @class = "navElement" })</li>
+                        <li>@Html.ActionLink("View Cars", "CustomerDetails", "Car", "", new { @class = "navElement updatedNav" })</li>
                     }
                     @RenderSection("navbar", required: false)
                 </ul>
@@ -100,6 +95,7 @@
             var currentScrollPos = window.pageYOffset;
             if (prevScrollpos > currentScrollPos) {
                 document.getElementById("navbar").style.top = "0";
+                document.getElementById("navbar").style.backgroundColor = "#222222"
             } else {
                 document.getElementById("navbar").style.top = "-60px";
             }
@@ -134,6 +130,55 @@
 
         });
     </script>
+    <!--Slide in left on Scroll-->
+    <script>
+        $(document).ready(function () {
+            $(window).scroll(function () {
+                $('.slideInLeftJQuery').each(function (i) {
+
+                    var middle_of_object = $(this).offset().top + ($(this).outerHeight()) / 2;
+                    var bottom_of_window = $(window).scrollTop() + $(window).height();
+
+                    if (bottom_of_window > middle_of_object) {
+                        $(this).animate({ left: "0" }, 1000);
+                    }
+                });
+            });
+        });
+    </script>
+    <!--Slide in right on Scroll-->
+    <script>
+        $(document).ready(function () {
+            $(window).scroll(function () {
+                $('.slideInRightJQuery').each(function (i) {
+
+                    var middle_of_object = $(this).offset().top + ($(this).outerHeight()) / 2;
+                    var bottom_of_window = $(window).scrollTop() + $(window).height();
+
+                    if (bottom_of_window > middle_of_object) {
+                        $(this).animate({ right: "0" }, 1000);
+                    }
+                });
+            });
+        });
+    </script>
+    <!--Slide in up on Scroll-->
+    <script>
+        $(document).ready(function () {
+            $(window).scroll(function () {
+                $('.slideInUpJQuery').each(function (i) {
+
+                    var middle_of_object = $(this).offset().top + ($(this).outerHeight()) / 2;
+                    var bottom_of_window = $(window).scrollTop() + $(window).height();
+
+                    if (bottom_of_window > middle_of_object) {
+                        $(this).animate({ top: "0%" }, 2000);
+                    }
+                });
+            });
+        });
+    </script>
+    <!--Scroll Reveal-->
     <script>
         ScrollReveal().reveal('.scrollReveal', { delay: 1000 });
     </script>

@@ -4,8 +4,9 @@
 }
 
 @section css{
-    <link href="~/Content/BackgroundImage.css" rel="stylesheet" />
-    <link href="~/Content/IndexHome.css" rel="stylesheet" />
+    <link href="~/Content/HomeBackground.css" rel="stylesheet" />
+    <link href="~/Content/IndexHome.css" rel="stylesheet" />s
+    <link href="~/Content/customNav.css" rel="stylesheet" />
 }
 
 @section navbar{
@@ -22,48 +23,48 @@
             </div>
         </div>
     </li>
-    <li><a href="#contact">Contact Us</a></li>
-    <li><a href="https://www.lifehack.org/490519/5-car-maintenance-blogs-you-should-read-every-day">Blogs</a></li>
+    <li><a class="updatedNav" href="#contact">Contact Us</a></li>
+    <li><a class="updatedNav" href="https://www.lifehack.org/490519/5-car-maintenance-blogs-you-should-read-every-day">Blogs</a></li>
 }
 
 <div style="margin-left: -90px; margin-right: -89px;">
     <!--Head Jumbotron-->
-    <div class="jumbotron wrap" id="divMain1" style="padding-top:10px; padding-bottom:30px; margin-left:86px; margin-right:86px;">
-        <img class="navbar-brand slideInRight animated" src="~/Images/output-onlinepngtools (1).png" alt="" style="height:220px; padding:0px" />
-        <h2 class="text-center slideInRight animated" style="font-size:28px; margin-top:60px"><b>Top notch service is our main auto motive.</b></h2>
-        <p class="lead text-center slideInRight animated">MS Auto Garage is one of the best and most recognized Car Servicing Garages in Pune. </p>
-        <p><a href="#company" class="btn btn-primary btn-lg slideInRight animated" style="margin-left:220px">Learn more &raquo;</a></p>
+    <div class="jumbotron slideInUp delay1" id="divMain1" style="padding-top:10px; padding-bottom:30px; margin-left:86px; margin-right:86px;">
+        <img class="navbar-brand slideInLeft delay2" src="~/Images/output-onlinepngtools (1).png" alt="" style="height:220px; padding:0px" />
+        <h2 class="text-center slideInLeft delay2" style="font-size:28px; margin-top:60px"><b>Top notch service is our main auto motive.</b></h2>
+        <p class="lead text-center slideInLeft delay2">MS Auto Garage is one of the best and most recognized Car Servicing Garages in Pune. </p>
+        <p><a href="#company" class="btn btn-primary btn-lg slideInLeft delay2" style="margin-left:220px">Learn more &raquo;</a></p>
     </div>
     <!--4 images-->
     <div id="4Images" class="row text-center text-primary" style="margin-top: 280px; padding-top: 170px; margin-left:50px;
             margin-right:50px; margin-bottom:80px; font-size:30px; font-family:'Agency FB'">
-        <div class="col-md-3">
+        <div class="col-md-3 slideInLeftJQuery">
             <img style="margin-bottom:10px" src="~/Images/best_price.png" />
             <p>Best Prices</p>
         </div>
 
-        <div class="col-md-3" style="border-left: 2px solid #a3a3a3; height: 100px">
+        <div class="col-md-3 slideInLeftJQuery" style="border-left: 2px solid #a3a3a3; height: 100px">
             <img style="margin-bottom:10px" src="~/Images/expert.png" />
             <p>Expert Workmanship</p>
         </div>
 
-        <div class="col-md-3" style="border-left: 2px solid #a3a3a3; height: 100px">
+        <div class="col-md-3 slideInLeftJQuery" style="border-left: 2px solid #a3a3a3; height: 100px">
             <img style="margin-bottom:10px" src="~/Images/free_pickup.png" />
             <p>Free Pickup and Drop</p>
         </div>
 
-        <div class="col-md-3" style="border-left: 2px solid #a3a3a3; height: 100px">
+        <div class="col-md-3 slideInLeftJQuery" style="border-left: 2px solid #a3a3a3; height: 100px">
             <img style="margin-bottom:10px" src="~/Images/spare.png" />
             <p>Genuine Spares</p>
         </div>
     </div>
     <!--Happy Customers-->
     <div class="row" style="margin-left:100px; margin-bottom: 70px;">
-        <div class="col-md-3 row" style="background-color:#eeeeee; border-radius:20px; padding-bottom: 30px; margin-left: 140px">
+        <div class="col-md-3 row slideInRightJQuery" style="background-color:#eeeeee; border-radius:20px; padding-bottom: 30px; margin-left: 140px">
             <i class="col-md-4 fa fa-smile fa-4x" style="padding-top: 40px; color:#428bca"></i>
             <div class="col-md-8 text-center" style="padding-top:20px"><h2 class="text-primary">@Model.CheckInteger</h2><h4>Happy Customers</h4></div>
         </div>
-        <div class="col-md-3 text-center" style="background-color:#eeeeee; border-radius:20px; padding-top: 15px; padding-bottom: 35px; margin-left: 175px;">
+        <div class="col-md-3 text-center slideInRightJQuery" style="background-color:#eeeeee; border-radius:20px; padding-top: 15px; padding-bottom: 35px; margin-left: 175px;">
             <h2>Google Rating: 4.5</h2>
             <div style="color:#428bca">
                 <i class="fas fa-star fa-2x"></i>
@@ -88,10 +89,10 @@
                 @*<div class="checkMark col-md-3 jumbotron text-center" style="margin-left:20px; height:120px; width:250px; padding:20px">@item.ServiceName</div>*@
 
                 <span title="Click to View Service Details">
-                <button onclick="@{@item.Keyword}()" class="dropbtn checkMark col-md-3 jumbotron text-center"
-                        style="margin-left:20px; height:120px; width:250px; padding:20px; color:black">
-                    @item.ServiceName
-                </button>
+                    <button onclick="@{@item.Keyword}()" class="dropbtn checkMark col-md-3 jumbotron text-center"
+                            style="margin-left:20px; height:120px; width:250px; padding:20px; color:black">
+                        @item.ServiceName
+                    </button>
                 </span>
                 <div id="@item.Keyword" class="dropdown-content" style="width: 1100px; height: 490px; border-radius: 25px;
                         font-family:'Agency FB'">
@@ -140,13 +141,13 @@
         </div>
     </div>
     <!--Car Makes Header-->
-    <div id="carMakes" class="text-center hideme" style="color:white; background-color:#428bca; border-radius: 20px; margin-left: 25px; margin-right: 25px">
+    <div id="carMakes" class="text-center slideInLeftJQuery" style="color:white; background-color:#428bca; border-radius: 20px; margin-left: 25px; margin-right: 25px">
         <h1 style="padding-top: 30px; padding-bottom: 30px"><span style="font-family:'Agency FB'">We support many makes and models</span></h1>
     </div>
 </div>
 
 <!--Car Makes-->
-<div id="carMakes" class="hideme" style="margin-bottom: 20px">
+<div id="carMakes" class="slideInLeftJQuery" style="margin-bottom: 20px">
     <div class="row text-center logos" style="margin-top: 40px">
         <div class="col-md-3" style="border-right: 2px solid #a3a3a3">
             <img style="width:50%" src="~/Images/mercedes_logos_PNG3.png" />

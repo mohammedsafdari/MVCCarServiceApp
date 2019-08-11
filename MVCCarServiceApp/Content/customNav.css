@@ -1,0 +1,14 @@
+﻿.updatedNav {
+    color:white; 
+    font-family:'Agency FB'; 
+    font-size: medium
+}
+
+.updatedNav:hover {
+    color: #999999;
+    background-color:black
+}
+
+.updatedNav1 {
+    background: transparent
+}

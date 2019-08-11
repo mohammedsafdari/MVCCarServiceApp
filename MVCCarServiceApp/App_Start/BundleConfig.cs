@@ -34,7 +34,7 @@ namespace MVCCarServiceApp
                       "~/Content/beat.css",
                       "~/Content/logoHover.css",
                       "~/Content/floatUp.css",
-                      "~/Content/slideInRight.css"));
+                      "~/Content/Transitions.css"));
         }
     }
 }

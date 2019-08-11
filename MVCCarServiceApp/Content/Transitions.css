@@ -1,0 +1,58 @@
+﻿body {
+    overflow-x: hidden;
+}
+
+.slideInLeft {
+    animation-name: slideInLeft;
+    animation-fill-mode: both;
+}
+
+.slideInUp {
+    animation-name: slideInUp;
+    animation-fill-mode: both;
+}
+
+.delay1 {
+    animation-duration: 1s;
+}
+
+.delay2 {
+    animation-duration: 2s;
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(100%);
+        visibility: visible;
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInUp{
+    from{
+        transform: translateY(500px);
+        visibility: visible;
+    }
+    to{
+        transform: translateY(0)
+    }
+}
+
+.slideInLeftJQuery {
+    left: 100%
+}
+
+.slideInRightJQuery {
+    right: 100%
+}
+
+.slideInUpJQuery {
+    top: 100%
+}
+
+.hideme {
+    opacity: 0;
+}
