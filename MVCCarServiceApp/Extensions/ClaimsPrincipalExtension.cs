@@ -10,14 +10,14 @@ namespace MVCCarServiceApp.Extensions
 {
     public static class ClaimsPrincipalExtension
     {
-        public static string FirstName(this IPrincipal user)
+        public static string FullName(this IPrincipal user)
         {
             if (user.Identity.IsAuthenticated)
             {
                 ClaimsIdentity claimsIdentity = user.Identity as ClaimsIdentity;
                 foreach (var claim in claimsIdentity.Claims)
                 {
-                    if (claim.Type == "FirstName")
+                    if (claim.Type == "FullName")
                         return claim.Value;
                 }
                 return "";
@@ -26,20 +26,20 @@ namespace MVCCarServiceApp.Extensions
                 return "";
         }
 
-        public static string GetLastName(this IPrincipal user)
-        {
-            if (user.Identity.IsAuthenticated)
-            {
-                ClaimsIdentity claimsIdentity = user.Identity as ClaimsIdentity;
-                foreach (var claim in claimsIdentity.Claims)
-                {
-                    if (claim.Type == "LastName")
-                        return claim.Value;
-                }
-                return "";
-            }
-            else
-                return "";
-        }
+        //public static string GetLastName(this IPrincipal user)
+        //{
+        //    if (user.Identity.IsAuthenticated)
+        //    {
+        //        ClaimsIdentity claimsIdentity = user.Identity as ClaimsIdentity;
+        //        foreach (var claim in claimsIdentity.Claims)
+        //        {
+        //            if (claim.Type == "LastName")
+        //                return claim.Value;
+        //        }
+        //        return "";
+        //    }
+        //    else
+        //        return "";
+        //}
     }
 }

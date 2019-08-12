@@ -29,7 +29,7 @@
                 <ul class="nav navbar-nav">
                     @if (ViewContext.HttpContext.User.IsInRole(MVCCarServiceApp.Models.Roles.Admin))
                     {
-                        <li>@Html.ActionLink("Customer List", "Customers", "Customer", "", new { @class = "navElement updatedNav", style="color:white" })</li>
+                        <li>@Html.ActionLink("Customer List", "Customers", "Customer", "", new { @class = "navElement updatedNav" })</li>
                         <li>@Html.ActionLink("Admin Panel", "AdminPanel", "Admin", "", new { @class = "navElement updatedNav" })</li>
                     }
                     else
